@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -18,37 +19,144 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="Muzammil Hussain" content="My Portfolio website made with Flutter 💜">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="muzammil_hussain">
+  <meta name="apple-mobile-web-app-title" content="Muzammil-Hussain">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Muzammil Hussain (Mr.)">
+  <meta name="description" content="A passionate 3+ years Flutter developer">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metatags.io/">
+  <meta property="og:title" content="Muzammil Hussain (Mr.)">
+  <meta property="og:description" content="A passionate 3+ years Flutter developer">
+  <!-- <meta property="og:image"
+    content="https://media.licdn.com/dms/image/C5603AQGtaHBC5S2pkg/profile-displayphoto-shrink_800_800/0/1642065959696?e=2147483647&v=beta&t=p_EmdclfWrkew8jTLy6DIqr6A4_XSPbZzW4-915FjKchttps://media.licdn.com/dms/image/C5603AQGtaHBC5S2pkg/profile-displayphoto-shrink_800_800/0/1642065959696?e=2147483647&v=beta&t=p_EmdclfWrkew8jTLy6DIqr6A4_XSPbZzW4-915FjKc"> -->
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://metatags.io/">
+  <meta property="twitter:title" content="Muzammil Hussain (Mr.)">
+  <meta property="twitter:description" content="A passionate 3+ years Flutter developer">
+  <!-- <meta property="twitter:image"
+    content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"> -->
+
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 
-  <title>muzammil_hussain</title>
+
+  <title>Muzammil Hussain</title>
   <link rel="manifest" href="manifest.json">
-
+  <script type="application/javascript">
+    function openLink(url, target, isAsync = false) {
+      var is_safari = /^(?!.*chrome).*safari/i.test(navigator.userAgent.toLowerCase());
+      if (is_safari && isAsync) {
+        window.location.href = url;
+      } else {
+        window.open(url, target);
+      }
+    }
+  </script>
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
+    var serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
+  <script src="https://unpkg.com/canvaskit-wasm@0.37.1/bin/canvaskit.js"></script>
+  <link rel="preload" href="https://unpkg.com/canvaskit-wasm@0.37.1/bin/canvaskit.wasm" as="fetch"
+    crossOrigin="anonymous">
   <script src="flutter.js" defer></script>
+  <style>
+    html {
+      background: #F4F4EF;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #icon {
+      margin: auto;
+      display: block;
+    }
+
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -webkit-transform: translateX(-50%) translateY(-50%);
+    }
+
+    .loading-label {
+      font-size: 18px;
+      font-weight: normal;
+      text-align: center;
+      font-style: normal;
+      font-color: black;
+      animation-name: changing;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+    }
+
+    @keyframes changing {}
+  </style>
+  <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
+
 <body>
+  <div class="loading" id="loader">
+    <lord-icon id="icon" src="https://lottie.host/fe402b47-ea03-4ce5-b3a0-c1f1f5f9c795/OB3Nhb7U8U.json" trigger="loop"
+      colors="primary:#000000,secondary:#ffc738,tertiary:#f24c00" style="width:200px;height:200px">
+    </lord-icon>
+    <p class="loading-label"></p>
+  </div>
   <script>
-    window.addEventListener('load', function(ev) {
+    const texts = [
+      "Hold on, let me grab my coffee...",
+      "Drinking it now...",
+      "Trust me, I will get back to you...",
+      "Its a big cup...",
+      "Don't panic, Just count to infinity...",
+    ];
+    const element = document.querySelector('p.loading-label');
+    let i = 0;
+    const listener = e => {
+      i = i < texts.length - 1 ? i + 1 : 0;
+      element.innerHTML = texts[i];
+    };
+    element.innerHTML = texts[0];
+    element.addEventListener('animationiteration', listener, false);
+
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
+            const loader = document.getElementById("loader");
+
+            if (loader != null) {
+              loader.remove();
+            }
             appRunner.runApp();
           });
         }
@@ -56,4 +164,5 @@
     });
   </script>
 </body>
+
 </html>

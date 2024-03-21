@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/presentation/configs/colors.dart';
+import 'package:muzammil_hussain/config/colors.dart';
 
 const bold = FontWeight.w700;
 const semiBold = FontWeight.w600;
@@ -8,12 +8,13 @@ const light = FontWeight.w300;
 
 extension ThemeEx on BuildContext {
   ThemeData theme() {
+    // TODOO Make this Dynamic
+
     return ThemeData(
       fontFamily: "Raleway",
       appBarTheme: appBarTheme(),
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.primary,
-
       textTheme: textTheme().apply(
         bodyColor: AppColors.white,
         displayColor: AppColors.white,
@@ -22,8 +23,6 @@ extension ThemeEx on BuildContext {
       textSelectionTheme: textSelectionTheme(),
       colorScheme: colorScheme(),
       iconTheme: iconTheme(),
-      // highlightColor: kTransparent,
-      // focusColor: kPrimary,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       inputDecorationTheme: inputDecorationTheme(),
     );
@@ -38,7 +37,6 @@ extension ThemeEx on BuildContext {
             color: AppColors.white,
           ),
       foregroundColor: AppColors.white,
-      // toolbarHeight: s100,
     );
   }
 
@@ -111,11 +109,7 @@ extension ThemeEx on BuildContext {
       );
 
   TextSelectionThemeData textSelectionTheme() {
-    return const TextSelectionThemeData(
-        // cursorColor: kSecondary,
-        // selectionColor: kSecondary,
-        // selectionHandleColor: kSecondary,
-        );
+    return const TextSelectionThemeData();
   }
 
   IconThemeData iconTheme() {

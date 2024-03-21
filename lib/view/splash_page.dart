@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/presentation/configs/colors.dart';
+import 'package:muzammil_hussain/config/colors.dart';
+import 'package:muzammil_hussain/config/utils/extensions/context_ext.dart';
+import 'package:muzammil_hussain/view/home_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -36,7 +38,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _textAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       lowerBound: lowerBoumd,
       upperBound: upperBoumd,
     );
@@ -44,13 +46,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         Tween<double>(begin: lowerBoumd + 0.3, end: upperBoumd).animate(
       CurvedAnimation(
         parent: _textAnimationController,
-        curve: Curves.easeOutCirc,
+        curve: Curves.easeOutBack,
       ),
     );
 
     _textAnimationController.forward();
     _gradientAnimationController.forward().then((value) async {
-      await Future.delayed(Duration(seconds: 2));
+      context.push(HomePage());
     });
   }
 

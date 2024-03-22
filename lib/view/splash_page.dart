@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/config/colors.dart';
-import 'package:muzammil_hussain/config/utils/extensions/context_ext.dart';
-import 'package:muzammil_hussain/view/home_page.dart';
+
+import '../config/colors.dart';
+import '../config/utils/extensions/context_ext.dart';
+import 'home_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

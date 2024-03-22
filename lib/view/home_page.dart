@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/config/theme.dart';
+import 'package:provider/provider.dart';
 
 import '../../config/utils/extensions/theme_ex.dart';
+import '../providers/theme_provider.dart';
 import 'web/hero_web.dart';
 import 'widgets/animated_cursor.dart';
 
@@ -46,15 +49,10 @@ class ThemeSwitcherWeb extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildOption(context),
-            _buildSpacer(),
-            _buildOption(context),
-            _buildSpacer(),
-            _buildOption(context),
-            _buildSpacer(),
-            _buildOption(context),
-            _buildSpacer(),
-            _buildOption(context),
+            for (int i = 0; i < ThemeConfig.allThemes().length; i++) ...[
+              _buildOption(context, i),
+              if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
+            ]
           ],
         ),
       ),
@@ -69,22 +67,31 @@ class ThemeSwitcherWeb extends StatelessWidget {
     );
   }
 
-  Widget _buildOption(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: context.theme().colorScheme.secondary,
-        ),
-      ),
-      child: InkWell(
-        onTap: () {},
-        child: CircleAvatar(
-          radius: 12,
-          backgroundColor: Colors.white,
-        ),
-      ),
+  Widget _buildOption(BuildContext context, int index) {
+    return Consumer<ThemeProvider>(
+      builder: (context, provider, child) {
+        return Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: provider.getIndex == index
+                  ? Colors.white
+                  : Colors.transparent,
+            ),
+          ),
+          child: InkWell(
+            onTap: () {
+              context.read<ThemeProvider>().updateThemeIndex(index);
+            },
+            child: CircleAvatar(
+              radius: 6,
+              backgroundColor:
+                  ThemeConfig.allThemes()[index].colorScheme.secondary,
+            ),
+          ),
+        );
+      },
     );
   }
 }

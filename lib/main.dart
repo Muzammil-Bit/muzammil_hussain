@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'config/utils/extensions/theme_ex.dart';
-import 'providers/animated_mouse_position_provider.dart';
+import 'providers/theme_provider.dart';
+import 'repositories/theme_repo.dart';
 import 'view/home_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  final ThemeRepo themeRepo = ThemeRepo(0);
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(themeRepo),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,11 +18,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Muzammil Hussain',
-      debugShowCheckedModeBanner: false,
-      theme: context.theme(),
-      home: const HomePage(),
-    );
+    return Consumer<ThemeProvider>(builder: (context, provider, child) {
+      return MaterialApp(
+        title: 'Muzammil Hussain',
+        debugShowCheckedModeBanner: false,
+        theme: provider.getTheme,
+        home: const HomePage(),
+      );
+    });
   }
 }

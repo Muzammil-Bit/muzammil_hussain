@@ -1,51 +1,19 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum ThemeColor {
-  purple,
-  orange,
-  blue,
-  yellow,
-  green,
-}
-
 class ThemeRepo {
-  ThemeColor _theme;
+  int _currentlySelectedThemeIndex = 0;
 
-  ThemeRepo(this._theme);
+  ThemeRepo(this._currentlySelectedThemeIndex);
 
-  ThemeColor get currentTheme => _theme;
+  int get currentTheme => _currentlySelectedThemeIndex;
 
-  updateTheme(ThemeColor theme) async {
-    _theme = theme;
-    _updateThemeInDb(theme);
+  Future updateTheme(int index) async {
+    _currentlySelectedThemeIndex = index;
+    await _updateThemeInDb(index);
   }
 
-  static Future<ThemeColor> getThemeFromDb(ThemeColor theme) async {
+  _updateThemeInDb(int index) async {
     final preferences = await SharedPreferences.getInstance();
-    final color = await preferences.getString("current_theme");
-
-    return _themeColorFromString(color);
-  }
-
-  _updateThemeInDb(ThemeColor theme) async {
-    final preferences = await SharedPreferences.getInstance();
-    preferences.setString("current_theme", theme.toString());
-  }
-
-  static ThemeColor _themeColorFromString(String? color) {
-    switch (color) {
-      case "blue":
-        return ThemeColor.blue;
-      case "green":
-        return ThemeColor.green;
-      case "orange":
-        return ThemeColor.orange;
-      case "purple":
-        return ThemeColor.purple;
-      case "yellow":
-        return ThemeColor.yellow;
-      default:
-        throw Exception("Unimplemented theme");
-    }
+    preferences.setInt("current_theme", index);
   }
 }

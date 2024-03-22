@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/config/utils/extensions/theme_ex.dart';
+
+import '../../config/utils/extensions/theme_ex.dart';
 
 class HeroWeb extends StatelessWidget {
   const HeroWeb({

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Muzammil Hussain',
         debugShowCheckedModeBanner: false,
-        theme: provider.getTheme,
+        theme: provider.currentTheme,
         home: const HomePage(),
       );
     });

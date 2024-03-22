@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class AnimatedCursorState {
   static final BoxDecoration kDefaultDecoration = BoxDecoration(
-    border: Border.all(color: Colors.white, width: 1),
+    border: Border.all(color: Colors.white.withOpacity(0.4), width: 1),
     shape: BoxShape.circle,
   );
 
-  static const Size kDefaultSize = Size(80, 80);
+  static const Size kDefaultSize = Size(60, 60);
 
   late final BoxDecoration decoration;
   final Offset offset;

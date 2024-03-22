@@ -42,7 +42,6 @@ class AnimatedCursor extends StatelessWidget {
                       width: state.size.width,
                       height: state.size.height,
                       decoration: state.decoration,
-                      // decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
                 ),
@@ -52,8 +51,8 @@ class AnimatedCursor extends StatelessWidget {
                 child: AnimatedPositioned(
                   left: state.offset.dx - state.size.width / 16,
                   top: state.offset.dy - state.size.height / 16,
-                  width: state.size.width / 8,
-                  height: state.size.height / 8,
+                  width: state.size.width / 10,
+                  height: state.size.height / 10,
                   duration: Duration(milliseconds: 50),
                   curve: Curves.decelerate,
                   child: IgnorePointer(

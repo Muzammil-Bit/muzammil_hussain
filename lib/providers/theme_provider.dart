@@ -8,8 +8,9 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeProvider(this._themeRepo);
 
-  ThemeData get getTheme => ThemeConfig.allThemes()[_themeRepo.currentTheme];
-  int get getIndex => _themeRepo.currentTheme;
+  ThemeData get currentTheme =>
+      ThemeConfig.allThemes()[_themeRepo.currentTheme];
+  int get currentIndex => _themeRepo.currentTheme;
 
   updateThemeIndex(int index) async {
     await _themeRepo.updateTheme(index);

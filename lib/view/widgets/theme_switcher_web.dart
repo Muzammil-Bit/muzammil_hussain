@@ -72,6 +72,9 @@ class _ThemeToggleButtonState extends State<ThemeToggleButton> {
         onTap: () {
           context.read<ThemeProvider>().updateThemeIndex(widget.index);
         },
+        enableFeedback: false,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         child: AnimatedContainer(
           duration: Duration(milliseconds: 500),
           curve: Curves.ease,

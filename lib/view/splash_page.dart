@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _gradientAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 6),
       lowerBound: lowerBoumd,
       upperBound: upperBoumd,
     );
@@ -39,20 +39,24 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _textAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 600),
       lowerBound: lowerBoumd,
       upperBound: upperBoumd,
     );
+
+    Cubic easeOutBack = Cubic(0.175, 0.9, 0.42, 1.475);
     _textAnimation =
         Tween<double>(begin: lowerBoumd + 0.3, end: upperBoumd).animate(
       CurvedAnimation(
         parent: _textAnimationController,
-        curve: Curves.easeOutBack,
+        curve: easeOutBack,
       ),
     );
 
     _textAnimationController.forward();
-    _gradientAnimationController.forward().then((value) async {
+    _gradientAnimationController.forward();
+    //then((value) async {});
+    Future.delayed(Duration(seconds: 3), () {
       context.push(HomePage());
     });
   }
@@ -86,22 +90,26 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           ),
           Align(
             alignment: Alignment.center,
-            child: ScaleTransition(
-              scale: _textAnimation,
-              child: Text.rich(
-                TextSpan(
-                    text: "MH",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(fontSize: 80, letterSpacing: 2),
-                    children: [
+            child: AnimatedBuilder(
+                animation: _textAnimation,
+                builder: (context, animation) {
+                  return Transform.scale(
+                    scale: _textAnimation.value,
+                    child: Text.rich(
                       TextSpan(
-                          text: ".",
-                          style: TextStyle(color: AppColors.secondary)),
-                    ]),
-              ),
-            ),
+                          text: "MH",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontSize: 80, letterSpacing: 2),
+                          children: [
+                            TextSpan(
+                                text: ".",
+                                style: TextStyle(color: AppColors.secondary)),
+                          ]),
+                    ),
+                  );
+                }),
           ),
         ],
       ),

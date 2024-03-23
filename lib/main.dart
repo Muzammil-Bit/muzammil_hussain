@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/view/splash_page.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/theme_provider.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         title: 'Muzammil Hussain',
         debugShowCheckedModeBanner: false,
         theme: provider.currentTheme,
-        home: const HomePage(),
+        // home: const HomePage(),
+        home: SplashPage(),
       );
     });
   }

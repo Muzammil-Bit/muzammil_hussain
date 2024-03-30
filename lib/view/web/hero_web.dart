@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/utils/extensions/theme_ex.dart';
+import '../widgets/fade_in_wudget.dart';
 import '../widgets/overlapping_text.dart';
 
 class HeroWeb extends StatelessWidget {
@@ -19,62 +20,7 @@ class HeroWeb extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               _bgGradient(context),
-              Positioned(
-                bottom: 40,
-                left: 0,
-                right: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "M.U",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    SizedBox(width: 20),
-                    Text(
-                      "19°C",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    SizedBox(width: 20),
-                    Text(
-                      "10:50 PM",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    SizedBox(width: 20),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.white,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .secondary
-                                .withOpacity(0.4),
-                            width: 4,
-                          ),
-                          shape: BoxShape.circle,
-                        ),
-                        child: CircleAvatar(
-                          radius: 10,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.secondary,
-                          child: Icon(
-                            Icons.wb_cloudy_sharp,
-                            color: Colors.white,
-                            size: 12,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              _WeatherAndTime(),
               Positioned(
                 right: constraints.maxWidth * 0.2,
                 top: 100,
@@ -166,6 +112,69 @@ class HeroWeb extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _WeatherAndTime extends StatelessWidget {
+  const _WeatherAndTime({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 40,
+      left: 0,
+      right: 0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "M.U",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          SizedBox(width: 20),
+          Text(
+            "19°C",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          SizedBox(width: 20),
+          Text(
+            "10:50 PM",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          SizedBox(width: 20),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.white,
+              ),
+              shape: BoxShape.circle,
+            ),
+            padding: EdgeInsets.all(10),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color:
+                      Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+                  width: 4,
+                ),
+                shape: BoxShape.circle,
+              ),
+              child: CircleAvatar(
+                radius: 10,
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                child: Icon(
+                  Icons.wb_cloudy_sharp,
+                  color: Colors.white,
+                  size: 12,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -13,7 +13,7 @@ class ThemeSwitcherWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(builder: (context, provider, child) {
       return Positioned(
-        right: 20,
+        left: 20,
         bottom: 0,
         top: 0,
         child: Container(
@@ -38,9 +38,9 @@ class ThemeSwitcherWeb extends StatelessWidget {
 
   Container _buildSpacer() {
     return Container(
-      height: 30,
+      height: 35,
       width: 1,
-      color: Colors.white.withOpacity(0.3),
+      color: Colors.white.withOpacity(0.2),
     );
   }
 }

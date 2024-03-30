@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/view/widgets/page_transition.dart';
 
 import '../config/colors.dart';
 import '../config/utils/extensions/context_ext.dart';
@@ -55,9 +56,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _textAnimationController.forward();
     _gradientAnimationController.forward();
-    //then((value) async {});
     Future.delayed(Duration(seconds: 3), () {
-      context.push(HomePage());
+      Navigator.of(context).push(CustomPageRoute(HomePage()));
+      // context.push(HomePage());
     });
   }
 

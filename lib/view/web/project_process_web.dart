@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/config/constants.dart';
 
 import 'package:muzammil_hussain/view/widgets/overlapping_text.dart';
 import 'package:muzammil_hussain/view/widgets/section_title.dart';
@@ -22,6 +24,7 @@ class ProjectProcessWeb extends StatelessWidget {
           SectionTitle(
             backgroundText: "PROCESS",
             foreGroundText: "PROJECT PROCESS",
+            subTitle: "LET'S TALK ABOUT YOUR PROJECT",
           ),
           SizedBox(height: 200),
           _ProcessCard(
@@ -106,12 +109,15 @@ class _ProcessCard extends StatelessWidget {
         ),
       )
     ];
-    return Container(
-      constraints: BoxConstraints(maxWidth: 1600),
-      padding: EdgeInsets.symmetric(horizontal: 100),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: isReversed ? children.reversed.toList() : children,
+    return Entry.opacity(
+      duration: Constants.entryAnimationDuration,
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 1600),
+        padding: EdgeInsets.symmetric(horizontal: 100),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: isReversed ? children.reversed.toList() : children,
+        ),
       ),
     );
   }

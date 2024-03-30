@@ -1,4 +1,6 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/config/constants.dart';
 
 class OverlappingText extends StatefulWidget {
   const OverlappingText({
@@ -18,51 +20,38 @@ class OverlappingText extends StatefulWidget {
 }
 
 class _OverlappingTextState extends State<OverlappingText>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 2),
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _controller.reverse();
-    });
-  }
-
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, 100 * _controller.value),
-          child: child!,
-        );
-      },
+    return Entry.opacity(
+      duration: Constants.entryAnimationDuration,
+      delay: Constants.entryDelay,
       child: Stack(
+        fit: StackFit.passthrough,
         children: [
-          Transform.translate(
-            offset: widget.offset,
-            child: Text(
-              widget.backgroundText ?? widget.text,
-              style: widget.backgroundStyle ??
-                  Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 80,
-                        height: 0.5,
-                      ),
+          Entry.all(
+            xOffset: -widget.offset.dx,
+            yOffset: -widget.offset.dy,
+            opacity: 0,
+            scale: 1,
+            delay: Constants.entryDelay,
+            duration: Constants.entryAnimationDuration,
+            child: Transform.translate(
+              offset: widget.offset,
+              child: Text(
+                widget.backgroundText ?? widget.text,
+                style: widget.backgroundStyle ??
+                    Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 80,
+                        ),
+              ),
             ),
           ),
           Text(
             widget.text,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontSize: widget.backgroundStyle?.fontSize ?? 80,
-                  height: 0.5,
                 ),
           ),
         ],

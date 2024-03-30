@@ -1,6 +1,8 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../config/constants.dart';
 import '../../config/theme.dart';
 import '../../providers/theme_provider.dart';
 
@@ -16,20 +18,27 @@ class ThemeSwitcherWeb extends StatelessWidget {
         left: 20,
         bottom: 0,
         top: 0,
-        child: Container(
-          width: 60,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (int i = 0; i < ThemeConfig.allThemes().length; i++) ...[
-                ThemeToggleButton(
-                  color: ThemeConfig.allThemes()[i].colorScheme.secondary,
-                  index: i,
-                  isActive: i == provider.currentIndex,
-                ),
-                if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
-              ]
-            ],
+        child: Entry.all(
+          delay: Constants.entryDelay,
+          xOffset: -20,
+          yOffset: 0,
+          scale: 1,
+          duration: Constants.entryAnimationDuration,
+          child: Container(
+            width: 40,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < ThemeConfig.allThemes().length; i++) ...[
+                  ThemeToggleButton(
+                    color: ThemeConfig.allThemes()[i].colorScheme.secondary,
+                    index: i,
+                    isActive: i == provider.currentIndex,
+                  ),
+                  if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
+                ]
+              ],
+            ),
           ),
         ),
       );
@@ -40,7 +49,7 @@ class ThemeSwitcherWeb extends StatelessWidget {
     return Container(
       height: 35,
       width: 1,
-      color: Colors.white.withOpacity(0.2),
+      color: Colors.white.withOpacity(0.1),
     );
   }
 }
@@ -62,6 +71,7 @@ class ThemeToggleButton extends StatefulWidget {
 
 class _ThemeToggleButtonState extends State<ThemeToggleButton> {
   bool isHovering = false;
+  final Duration animationDuration = Duration(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +86,7 @@ class _ThemeToggleButtonState extends State<ThemeToggleButton> {
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
+          duration: animationDuration,
           curve: Curves.ease,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -91,17 +101,23 @@ class _ThemeToggleButtonState extends State<ThemeToggleButton> {
             curve: Curves.ease,
             padding: !widget.isActive || isHovering
                 ? EdgeInsets.zero
-                : EdgeInsets.all(8),
-            duration: Duration(milliseconds: 500),
-            child: AnimatedContainer(
-              height: _getConstraints(),
-              width: _getConstraints(),
-              duration: Duration(milliseconds: 500),
+                : EdgeInsets.all(10),
+            duration: animationDuration,
+            child: AnimatedScale(
+              scale: isHovering ? 1 : 1.2,
+              duration: animationDuration,
               curve: Curves.ease,
-              decoration: BoxDecoration(
-                color:
-                    ThemeConfig.allThemes()[widget.index].colorScheme.secondary,
-                shape: BoxShape.circle,
+              child: AnimatedContainer(
+                height: _getConstraints(),
+                width: _getConstraints(),
+                duration: animationDuration,
+                curve: Curves.ease,
+                decoration: BoxDecoration(
+                  color: ThemeConfig.allThemes()[widget.index]
+                      .colorScheme
+                      .secondary,
+                  shape: BoxShape.circle,
+                ),
               ),
             ),
           ),
@@ -112,16 +128,16 @@ class _ThemeToggleButtonState extends State<ThemeToggleButton> {
 
   double _getConstraints() {
     if (isHovering && widget.isActive) {
-      return 40;
+      return 30;
     }
 
     if (widget.isActive) {
-      return 20;
+      return 15;
     }
 
     if (isHovering) {
       return 20;
     }
-    return 14;
+    return 10;
   }
 }

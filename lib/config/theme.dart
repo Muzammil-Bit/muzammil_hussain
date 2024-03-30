@@ -15,8 +15,7 @@ class ThemeConfig {
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.primary,
       textTheme: TextTheme(
-        headlineLarge:
-            const TextStyle(fontSize: 127, fontFamily: "Goku", height: 0.5),
+        headlineLarge: const TextStyle(fontSize: 127, fontFamily: "Goku"),
         headlineMedium: const TextStyle(
           fontSize: 70,
           fontWeight: semiBold,

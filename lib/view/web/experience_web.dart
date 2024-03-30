@@ -14,6 +14,7 @@ class ExperienceWeb extends StatelessWidget {
         SectionTitle(
           backgroundText: "EXPERIENCE",
           foreGroundText: "INFORMATION TECHNOLOGY",
+          subTitle: "EXPERIENCE",
         ),
         SizedBox(height: 250),
         Container(

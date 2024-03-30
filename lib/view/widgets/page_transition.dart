@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomPageRoute<T> extends PageRoute<T> {
   CustomPageRoute(this.child);
   @override
-  Color get barrierColor => Colors.black;
+  Color get barrierColor => Colors.transparent;
 
   @override
   String get barrierLabel => "";
@@ -14,7 +14,7 @@ class CustomPageRoute<T> extends PageRoute<T> {
   Widget buildPage(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation) {
     return FadeTransition(
-      opacity: animation,
+      opacity: Tween<double>(begin: 0, end: 1).animate(animation),
       child: child,
     );
   }

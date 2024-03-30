@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         title: 'Muzammil Hussain',
         debugShowCheckedModeBanner: false,
         theme: provider.currentTheme,
-        home: const HomePage(),
-        // home: SplashPage(),
+        // home: const HomePage(),
+        home: SplashPage(),
       );
     });
   }

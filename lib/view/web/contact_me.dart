@@ -18,6 +18,7 @@ class _ContactMeState extends State<ContactMe> {
         SectionTitle(
           backgroundText: "Contact",
           foreGroundText: "Contact Me",
+          subTitle: "GO AHEAD!",
         ),
         SizedBox(height: 200),
         ContactMeCard(),

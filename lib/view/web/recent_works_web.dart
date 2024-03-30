@@ -13,6 +13,7 @@ class RecentWorksWeb extends StatelessWidget {
         SectionTitle(
           backgroundText: "WORKS",
           foreGroundText: "RECENT WORKS",
+          subTitle: "WORKS",
         ),
         SizedBox(height: 180),
         ConstrainedBox(

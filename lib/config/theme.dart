@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
-import 'utils/extensions/theme_ex.dart';
+import '../extensions/theme_ex.dart';
 
 class ThemeConfig {
   static List<ThemeData> allThemes() {

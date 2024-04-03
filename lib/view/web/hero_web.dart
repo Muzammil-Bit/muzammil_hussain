@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../config/constants.dart';
-import '../../config/utils/extensions/theme_ex.dart';
+import '../../extensions/theme_ex.dart';
 import '../widgets/overlapping_text.dart';
 
 class HeroWeb extends StatelessWidget {

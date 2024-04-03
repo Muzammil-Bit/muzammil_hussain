@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muzammil_hussain/config/utils/extensions/theme_ex.dart';
+import 'package:muzammil_hussain/extensions/theme_ex.dart';
 
 import '../../config/assets.dart';
 

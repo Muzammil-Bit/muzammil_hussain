@@ -76,35 +76,46 @@ class _ProcessCard extends StatelessWidget {
     final children = [
       Expanded(
         flex: 2,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium
-                  ?.copyWith(height: 1.6, fontSize: 48),
-            ),
-            Text(
-              description,
-              style:
-                  Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
-            ),
-            Divider(
-              color: Colors.white.withOpacity(0.15),
-              height: 200,
-            ),
-          ],
+        child: Entry.opacity(
+          duration: Constants.entryAnimationDuration,
+          delay: Constants.entryDelay,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(height: 1.6, fontSize: 48),
+              ),
+              Text(
+                description,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(height: 1.6),
+              ),
+              Divider(
+                color: Colors.white.withOpacity(0.15),
+                height: 200,
+              ),
+            ],
+          ),
         ),
       ),
       Expanded(
-        child: Container(
-          height: 140,
-          alignment: isReversed ? Alignment.centerLeft : Alignment.centerRight,
-          child: OverlappingText(
-            text: number,
-            offset: Offset(20, 10),
+        child: Entry.opacity(
+          duration: Constants.entryAnimationDuration,
+          delay: Constants.entryDelay,
+          child: Container(
+            height: 140,
+            alignment:
+                isReversed ? Alignment.centerLeft : Alignment.centerRight,
+            child: OverlappingText(
+              text: number,
+              offset: Offset(20, 10),
+            ),
           ),
         ),
       )

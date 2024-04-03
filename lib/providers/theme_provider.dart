@@ -6,7 +6,16 @@ import '../repositories/theme_repo.dart';
 class ThemeProvider extends ChangeNotifier {
   final ThemeRepo _themeRepo;
 
-  ThemeProvider(this._themeRepo);
+  ThemeProvider(this._themeRepo) {
+    Future.delayed(Duration(milliseconds: 300), () {
+      initCurrentTheme();
+    });
+  }
+
+  initCurrentTheme() async {
+    await _themeRepo.getThemeFromDb();
+    notifyListeners();
+  }
 
   ThemeData get currentTheme =>
       ThemeConfig.allThemes()[_themeRepo.currentTheme];

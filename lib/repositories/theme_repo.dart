@@ -12,6 +12,11 @@ class ThemeRepo {
     await _updateThemeInDb(index);
   }
 
+  Future getThemeFromDb() async {
+    final preferences = await SharedPreferences.getInstance();
+    _currentlySelectedThemeIndex = preferences.getInt("current_theme") ?? 0;
+  }
+
   _updateThemeInDb(int index) async {
     final preferences = await SharedPreferences.getInstance();
     preferences.setInt("current_theme", index);

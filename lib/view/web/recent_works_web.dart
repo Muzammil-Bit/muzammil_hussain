@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:muzammil_hussain/config/assets.dart';
+import 'package:muzammil_hussain/models/recent_works.dart';
 
 import '../widgets/section_title.dart';
 
@@ -19,7 +22,7 @@ class RecentWorksWeb extends StatelessWidget {
         ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 1000),
           child: GridView.builder(
-            itemCount: 4,
+            itemCount: RecentWork.works.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -30,6 +33,7 @@ class RecentWorksWeb extends StatelessWidget {
             itemBuilder: (context, index) {
               return WorkCard(
                 isAtTop: index % 2 == 0,
+                work: RecentWork.works[index],
               );
             },
           ),
@@ -43,9 +47,11 @@ class WorkCard extends StatefulWidget {
   const WorkCard({
     super.key,
     required this.isAtTop,
+    required this.work,
   });
 
   final bool isAtTop;
+  final RecentWork work;
 
   @override
   State<WorkCard> createState() => _WorkCardState();
@@ -99,7 +105,7 @@ class _WorkCardState extends State<WorkCard> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
-                            "assets/images/project1.jpeg",
+                            widget.work.imagePath,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -119,12 +125,34 @@ class _WorkCardState extends State<WorkCard> {
                               alignment: Alignment.center,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  ExperienceCardButton(),
+                                  ExperienceCardButton(
+                                    child: SvgPicture.asset(
+                                      Assets.playstore,
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                                    onTap: () {},
+                                  ),
                                   SizedBox(width: 10),
-                                  ExperienceCardButton(),
+                                  ExperienceCardButton(
+                                    child: SvgPicture.asset(
+                                      Assets.playstore,
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                                    onTap: () {},
+                                  ),
                                   SizedBox(width: 10),
-                                  ExperienceCardButton(),
+                                  ExperienceCardButton(
+                                    child: SvgPicture.asset(
+                                      Assets.playstore,
+                                      width: 16,
+                                      height: 16,
+                                    ),
+                                    onTap: () {},
+                                  ),
                                 ],
                               ),
                             ),
@@ -144,7 +172,7 @@ class _WorkCardState extends State<WorkCard> {
                   children: [
                     Expanded(
                       child: Text(
-                        "Beyond the veil",
+                        widget.work.title,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                     ),
@@ -181,7 +209,12 @@ class _WorkCardState extends State<WorkCard> {
 class ExperienceCardButton extends StatefulWidget {
   const ExperienceCardButton({
     super.key,
+    required this.child,
+    required this.onTap,
   });
+
+  final Widget child;
+  final void Function() onTap;
 
   @override
   State<ExperienceCardButton> createState() => _ExperienceCardButtonState();
@@ -199,18 +232,17 @@ class _ExperienceCardButtonState extends State<ExperienceCardButton> {
         onEnter: (v) => setState(() => isHovering = true),
         onExit: (v) => setState(() => isHovering = false),
         child: InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(50),
-          child: Material(
-            borderRadius: BorderRadius.circular(50),
-            child: Ink(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: FlutterLogo(),
+          onTap: widget.onTap,
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
             ),
+            alignment: Alignment.center,
+            child: widget.child,
           ),
         ),
       ),

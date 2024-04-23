@@ -95,7 +95,7 @@ class _SectionTitleState extends State<SectionTitle>
                         child: AnimatedContainer(
                           curve: Curves.ease,
                           color: Colors.white.withOpacity(0.4),
-                          duration: Duration(milliseconds: 500),
+                          duration: Duration(milliseconds: 800),
                           height: 0.5,
                           width: isVisible ? 400 : 0,
                         ),

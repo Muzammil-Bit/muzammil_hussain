@@ -19,7 +19,7 @@ class ThemeSwitcherWeb extends StatelessWidget {
         bottom: 0,
         top: 0,
         child: Entry.all(
-          delay: Constants.entryDelay,
+          delay: Constants.delay1,
           xOffset: -20,
           yOffset: 0,
           scale: 1,

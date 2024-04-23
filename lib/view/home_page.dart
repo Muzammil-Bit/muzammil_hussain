@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return AnimatedCursor(
@@ -24,8 +25,9 @@ class _HomePageState extends State<HomePage> {
         body: Stack(
           children: [
             ListView(
+              controller: _scrollController,
               children: [
-                HeroWeb(),
+                HeroWeb(scrollController: _scrollController),
                 ProjectProcessWeb(),
                 ExperienceWeb(),
                 RecentWorksWeb(),

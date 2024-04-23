@@ -9,13 +9,47 @@ import '../../config/constants.dart';
 import '../../extensions/theme_ex.dart';
 import '../widgets/overlapping_text.dart';
 
-class HeroWeb extends StatelessWidget {
+class HeroWeb extends StatefulWidget {
   const HeroWeb({
     super.key,
+    required this.scrollController,
   });
+  final ScrollController scrollController;
+
+  @override
+  State<HeroWeb> createState() => _HeroWebState();
+}
+
+class _HeroWebState extends State<HeroWeb> {
+  @override
+  void initState() {
+    super.initState();
+    widget.scrollController.addListener(_scrollListener);
+  }
+
+  bool animate = false;
+
+  _scrollListener() {
+    if (widget.scrollController.offset >= 200 && animate == false) {
+      setState(() {
+        animate = true;
+      });
+    } else if (widget.scrollController.offset <= 200 && animate == true) {
+      setState(() {
+        animate = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.scrollController.removeListener(_scrollListener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final Duration animDuration = Duration(milliseconds: 200);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -26,21 +60,37 @@ class HeroWeb extends StatelessWidget {
             children: [
               _bgGradient(context),
               _WeatherAndTime(),
-              Positioned(
-                right: constraints.maxWidth * 0.2,
-                top: 100,
-                child: OverlappingText(text: "M"),
+              AnimatedPositioned(
+                duration: animDuration,
+                curve: Curves.easeOut,
+                right: constraints.maxWidth * 0.1,
+                top: animate ? 300 : 100,
+                child: OverlappingHeroText(
+                  text: "M",
+                  initialXOffset: 200,
+                  initialYOffset: 200,
+                ),
               ),
-              Positioned(
+              AnimatedPositioned(
+                duration: animDuration,
+                curve: Curves.easeOut,
+                bottom: animate ? 50 : -50,
                 right: constraints.maxWidth * 0.2,
-                bottom: -10,
-                child: OverlappingText(text: "Z"),
+                child: OverlappingHeroText(
+                  text: "Z",
+                  initialXOffset: -200,
+                  initialYOffset: 200,
+                ),
               ),
-              Positioned(
-                left: constraints.maxWidth * 0.15,
-                bottom: constraints.maxHeight * 0.15,
-                child: OverlappingText(
+              AnimatedPositioned(
+                left: 150,
+                duration: animDuration,
+                curve: Curves.easeOut,
+                bottom: animate ? 300 : 150,
+                child: OverlappingHeroText(
                   text: "U",
+                  initialXOffset: -200,
+                  initialYOffset: 200,
                 ),
               ),
               Align(
@@ -49,7 +99,7 @@ class HeroWeb extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Entry.opacity(
-                      delay: Constants.entryDelay,
+                      delay: Constants.delay1,
                       child: OverlappingText(
                         text: "Muzammil",
                         offset: Offset(-20, -40),
@@ -64,7 +114,7 @@ class HeroWeb extends StatelessWidget {
                       ),
                     ),
                     Entry.opacity(
-                      delay: Constants.entryDelay,
+                      delay: Constants.delay1,
                       child: Transform.translate(
                         offset: Offset(0, -20),
                         child: Text(
@@ -75,7 +125,7 @@ class HeroWeb extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Entry.opacity(
-                      delay: Constants.entryDelay,
+                      delay: Constants.delay1,
                       duration: Constants.entryAnimationDuration,
                       child: Container(
                         width: 500,
@@ -115,17 +165,18 @@ class HeroWeb extends StatelessWidget {
       top: -250,
       child: Entry.offset(
         yOffset: -500,
-        delay: Duration(seconds: 1),
-        duration: Duration(seconds: 2),
+        delay: Duration(milliseconds: 4000),
+        duration: Duration(seconds: 3),
         child: Container(
-          height: 800,
+          height: 900,
           width: MediaQuery.of(context).size.width + 30,
           decoration: BoxDecoration(
             gradient: RadialGradient(
               center: Alignment.topCenter,
-              radius: 0.9,
+              radius: 0.8,
+              stops: [-2, 1],
               colors: [
-                context.theme().colorScheme.secondary,
+                context.theme().colorScheme.secondary.withOpacity(0.8),
                 context.theme().scaffoldBackgroundColor,
               ],
             ),
@@ -163,7 +214,7 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
       left: 0,
       right: 0,
       child: Entry.opacity(
-        delay: Constants.entryDelay,
+        delay: Constants.delay1,
         duration: Constants.entryAnimationDuration,
         curve: Curves.ease,
         child: Row(

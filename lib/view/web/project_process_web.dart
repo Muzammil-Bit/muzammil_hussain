@@ -78,7 +78,7 @@ class _ProcessCard extends StatelessWidget {
         flex: 2,
         child: Entry.opacity(
           duration: Constants.entryAnimationDuration,
-          delay: Constants.entryDelay,
+          delay: Constants.delay1,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -107,7 +107,7 @@ class _ProcessCard extends StatelessWidget {
       Expanded(
         child: Entry.opacity(
           duration: Constants.entryAnimationDuration,
-          delay: Constants.entryDelay,
+          delay: Constants.delay1,
           child: Container(
             height: 140,
             alignment:

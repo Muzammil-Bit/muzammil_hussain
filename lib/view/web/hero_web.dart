@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 
 import '../../config/constants.dart';
 import '../../extensions/theme_ex.dart';
@@ -58,13 +60,16 @@ class _HeroWebState extends State<HeroWeb> {
           return Stack(
             clipBehavior: Clip.none,
             children: [
-              _bgGradient(context),
               _WeatherAndTime(),
               AnimatedPositioned(
                 duration: animDuration,
                 curve: Curves.easeOut,
-                right: constraints.maxWidth * 0.1,
-                top: animate ? 300 : 100,
+                right: context.isMobile ? 20 : constraints.maxWidth * 0.1,
+                top: animate
+                    ? 300
+                    : context.isMobile
+                        ? 50
+                        : 100,
                 child: OverlappingHeroText(
                   text: "M",
                   initialXOffset: 200,
@@ -74,7 +79,7 @@ class _HeroWebState extends State<HeroWeb> {
               AnimatedPositioned(
                 duration: animDuration,
                 curve: Curves.easeOut,
-                bottom: animate ? 50 : -50,
+                bottom: animate ? -100 : -50,
                 right: constraints.maxWidth * 0.2,
                 child: OverlappingHeroText(
                   text: "Z",
@@ -83,76 +88,94 @@ class _HeroWebState extends State<HeroWeb> {
                 ),
               ),
               AnimatedPositioned(
-                left: 150,
+                left: context.isMobile ? 30 : 150,
                 duration: animDuration,
                 curve: Curves.easeOut,
-                bottom: animate ? 300 : 150,
+                bottom: animate
+                    ? 300
+                    : context.isMobile
+                        ? 100
+                        : 150,
                 child: OverlappingHeroText(
                   text: "U",
                   initialXOffset: -200,
                   initialYOffset: 200,
                 ),
               ),
+              _bgGradient(context),
               Align(
                 alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Entry.opacity(
-                      delay: Constants.delay1,
-                      child: OverlappingText(
-                        text: "Muzammil",
-                        offset: Offset(-20, -40),
-                        backgroundStyle: TextStyle(
-                          fontSize: 127,
-                          fontFamily: "Goku",
-                          foreground: Paint()
-                            ..style = PaintingStyle.stroke
-                            ..strokeWidth = 1
-                            ..color = Theme.of(context).colorScheme.secondary,
-                        ),
-                      ),
-                    ),
-                    Entry.opacity(
-                      delay: Constants.delay1,
-                      child: Transform.translate(
-                        offset: Offset(0, -20),
-                        child: Text(
-                          "Hussain",
-                          style: Theme.of(context).textTheme.headlineLarge,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Entry.opacity(
-                      delay: Constants.delay1,
-                      duration: Constants.entryAnimationDuration,
-                      child: Container(
-                        width: 500,
-                        child: Text.rich(
-                          TextSpan(
-                            text: "Flutter Developer & Open Source Enthusiast",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w800,
-                            ),
-                            children: [
-                              TextSpan(
-                                  text:
-                                      " from Multan, Pakistan, been working as a freelancer and in tech companies for years with a straight focus on the flutter and mobile world. Excited for the upcoming opportunities.",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300,
-                                  )),
-                            ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Entry.opacity(
+                        delay: Constants.delay1,
+                        child: OverlappingText(
+                          text: "Muzammil",
+                          offset: Offset(-_heroTitleFontSize(context) / 3,
+                              -_heroTitleFontSize(context) / 3),
+                          backgroundStyle: TextStyle(
+                            fontSize: _heroTitleFontSize(context),
+                            fontFamily: "Goku",
+                            foreground: Paint()
+                              ..style = PaintingStyle.stroke
+                              ..strokeWidth = 1
+                              ..color = Theme.of(context).colorScheme.secondary,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ),
-                  ],
+                      Entry.opacity(
+                        delay: Constants.delay1,
+                        child: Transform.translate(
+                          offset: Offset(0, -20),
+                          child: AutoSizeText(
+                            "Hussain",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge
+                                ?.copyWith(
+                                    // fontSize: _heroTitleFontSize(context),
+                                    ),
+                            maxLines: 1,
+                            maxFontSize: _heroTitleFontSize(context),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Entry.opacity(
+                        delay: Constants.delay1,
+                        duration: Constants.entryAnimationDuration,
+                        child: Container(
+                          width: 500,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
+                          child: Text.rich(
+                            TextSpan(
+                              text:
+                                  "Flutter Developer & Open Source Enthusiast",
+                              style: TextStyle(
+                                fontSize: context.isDeskTop ? 16 : 14,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              children: [
+                                TextSpan(
+                                    text:
+                                        " from Multan, Pakistan, been working as a freelancer and in tech companies for years with a straight focus on the flutter and mobile world. Excited for the upcoming opportunities.",
+                                    style: TextStyle(
+                                      fontSize: context.isDeskTop ? 16 : 12,
+                                      fontWeight: FontWeight.w300,
+                                    )),
+                              ],
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )
+              ),
             ],
           );
         },
@@ -160,25 +183,39 @@ class _HeroWebState extends State<HeroWeb> {
     );
   }
 
+  double _heroTitleFontSize(BuildContext context) {
+    if (context.isTablet) {
+      return 100;
+    }
+    if (context.isMobile) {
+      return 80;
+    }
+
+    return 127;
+  }
+
   Widget _bgGradient(BuildContext context) {
     return Positioned(
       top: -250,
-      child: Entry.offset(
-        yOffset: -500,
-        delay: Duration(milliseconds: 4000),
-        duration: Duration(seconds: 3),
-        child: Container(
-          height: 900,
-          width: MediaQuery.of(context).size.width + 30,
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.topCenter,
-              radius: 0.8,
-              stops: [-2, 1],
-              colors: [
-                context.theme().colorScheme.secondary.withOpacity(0.8),
-                context.theme().scaffoldBackgroundColor,
-              ],
+      child: Opacity(
+        opacity: 0.6,
+        child: Entry.offset(
+          yOffset: -500,
+          delay: Duration(milliseconds: 4000),
+          duration: Duration(seconds: 3),
+          child: Container(
+            height: 900,
+            width: MediaQuery.of(context).size.width + 30,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                center: Alignment.topCenter,
+                radius: 0.8,
+                stops: [-2, 1],
+                colors: [
+                  context.theme().colorScheme.secondary.withOpacity(0.8),
+                  context.theme().scaffoldBackgroundColor,
+                ],
+              ),
             ),
           ),
         ),
@@ -208,6 +245,12 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
   }
 
   @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 40,
@@ -220,11 +263,13 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "M.U",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            SizedBox(width: 20),
+            if (!context.isMobile) ...[
+              Text(
+                "M.U",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(width: 20),
+            ],
             Text(
               "19°C",
               style: Theme.of(context).textTheme.bodyLarge,

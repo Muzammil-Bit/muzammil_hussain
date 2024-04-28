@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:muzammil_hussain/config/constants.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 
 class OverlappingText extends StatefulWidget {
   const OverlappingText({
@@ -35,21 +37,23 @@ class _OverlappingTextState extends State<OverlappingText>
           duration: Constants.entryAnimationDuration,
           child: Transform.translate(
             offset: widget.offset,
-            child: Text(
+            child: AutoSizeText(
               widget.backgroundText ?? widget.text,
               style: widget.backgroundStyle ??
                   Theme.of(context).textTheme.headlineLarge?.copyWith(
                         color: Theme.of(context).colorScheme.secondary,
                         fontSize: 120,
                       ),
+              maxLines: 1,
             ),
           ),
         ),
-        Text(
+        AutoSizeText(
           widget.text,
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontSize: widget.backgroundStyle?.fontSize ?? 120,
               ),
+          maxLines: 1,
         ),
       ],
     );
@@ -57,14 +61,15 @@ class _OverlappingTextState extends State<OverlappingText>
 }
 
 class OverlappingHeroText extends StatefulWidget {
-  const OverlappingHeroText(
-      {super.key,
-      this.offset = const Offset(-10, 10),
-      required this.text,
-      this.backgroundStyle,
-      this.backgroundText,
-      required this.initialXOffset,
-      required this.initialYOffset});
+  const OverlappingHeroText({
+    super.key,
+    this.offset = const Offset(-10, 10),
+    required this.text,
+    this.backgroundStyle,
+    this.backgroundText,
+    required this.initialXOffset,
+    required this.initialYOffset,
+  });
   final Offset offset;
   final String text;
   final TextStyle? backgroundStyle;
@@ -106,7 +111,8 @@ class _OverlappingHeroTextState extends State<OverlappingHeroText>
                 style: widget.backgroundStyle ??
                     Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 120,
+                          fontSize: context
+                              .getResponsiveValue([60, 80, 120]).toDouble(),
                         ),
               ),
             ),
@@ -114,7 +120,8 @@ class _OverlappingHeroTextState extends State<OverlappingHeroText>
           Text(
             widget.text,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontSize: widget.backgroundStyle?.fontSize ?? 120,
+                  fontSize:
+                      context.getResponsiveValue([60, 80, 120]).toDouble(),
                 ),
           ),
         ],

@@ -23,6 +23,7 @@ dependencies:
   intl: ^0.19.0
   animated_flip_counter: ^0.3.2
   visibility_detector: ^0.4.0+2
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

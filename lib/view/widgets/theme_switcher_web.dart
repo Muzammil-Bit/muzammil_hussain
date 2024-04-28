@@ -1,5 +1,6 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';
@@ -13,36 +14,39 @@ class ThemeSwitcherWeb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(builder: (context, provider, child) {
-      return Positioned(
-        left: 20,
-        bottom: 0,
-        top: 0,
-        child: Entry.all(
-          delay: Constants.delay1,
-          xOffset: -20,
-          yOffset: 0,
-          scale: 1,
-          duration: Constants.entryAnimationDuration,
-          child: Container(
-            width: 40,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < ThemeConfig.allThemes().length; i++) ...[
-                  ThemeToggleButton(
-                    color: ThemeConfig.allThemes()[i].colorScheme.secondary,
-                    index: i,
-                    isActive: i == provider.currentIndex,
-                  ),
-                  if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
-                ]
-              ],
+    if (context.isMobile) return SizedBox();
+    return Consumer<ThemeProvider>(
+      builder: (context, provider, child) {
+        return Positioned(
+          left: 20,
+          bottom: 0,
+          top: 0,
+          child: Entry.all(
+            delay: Constants.delay1,
+            xOffset: -20,
+            yOffset: 0,
+            scale: 1,
+            duration: Constants.entryAnimationDuration,
+            child: Container(
+              width: 40,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (int i = 0; i < ThemeConfig.allThemes().length; i++) ...[
+                    ThemeToggleButton(
+                      color: ThemeConfig.allThemes()[i].colorScheme.secondary,
+                      index: i,
+                      isActive: i == provider.currentIndex,
+                    ),
+                    if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
+                  ]
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   Container _buildSpacer() {

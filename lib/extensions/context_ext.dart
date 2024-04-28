@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
@@ -5,5 +7,26 @@ extension ContextExt on BuildContext {
     Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
   }
 
-  // bool isTablet => MediaQuery.of(this).size.width >
+  bool get isTablet =>
+      MediaQuery.of(this).size.width <= 1025 &&
+      MediaQuery.of(this).size.width >= 770;
+
+  bool get isMobile => MediaQuery.of(this).size.width <= 770;
+
+  bool get isDeskTop => MediaQuery.of(this).size.width > 1025;
+
+  num getResponsiveValue(List<num> number) {
+    assert(number.length == 3);
+
+    if (isMobile) return number[0];
+    if (isTablet) return number[1];
+
+    return number[2];
+  }
+
+  double textScaleFactor({double maxTextScaleFactor = 2}) {
+    final width = MediaQuery.of(this).size.width;
+    double val = (width / 1400) * maxTextScaleFactor;
+    return max(1, min(val, maxTextScaleFactor));
+  }
 }

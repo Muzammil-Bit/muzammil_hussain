@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
             ListView(
               controller: _scrollController,
               children: [
-                HeroWeb(scrollController: _scrollController),
+                // HeroWeb(scrollController: _scrollController),
                 ProjectProcessWeb(),
                 ExperienceWeb(),
                 RecentWorksWeb(),

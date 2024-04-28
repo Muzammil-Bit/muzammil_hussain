@@ -15,7 +15,7 @@ extension ContextExt on BuildContext {
 
   bool get isDeskTop => MediaQuery.of(this).size.width > 1025;
 
-  num getResponsiveValue(List<num> number) {
+  T getResponsiveValue<T>(List<T> number) {
     assert(number.length == 3);
 
     if (isMobile) return number[0];

@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:muzammil_hussain/config/constants.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 
 import 'package:muzammil_hussain/view/widgets/overlapping_text.dart';
 import 'package:muzammil_hussain/view/widgets/section_title.dart';
@@ -73,62 +75,120 @@ class _ProcessCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final children = [
-      Expanded(
-        flex: 2,
-        child: Entry.opacity(
-          duration: Constants.entryAnimationDuration,
-          delay: Constants.delay1,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium
-                    ?.copyWith(height: 1.6, fontSize: 48),
+    final children = context.isMobile
+        ? [
+            Entry.opacity(
+              duration: Constants.entryAnimationDuration,
+              delay: Constants.delay1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Entry.opacity(
+                    duration: Constants.entryAnimationDuration,
+                    delay: Constants.delay1,
+                    child: Transform.scale(
+                      scale: 0.8,
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: OverlappingText(
+                          text: number,
+                          offset: Offset(20, 10),
+                        ),
+                      ),
+                    ),
+                  ),
+                  AutoSizeText(
+                    title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium
+                        ?.copyWith(fontSize: 38),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  ),
+                  AutoSizeText(
+                    description,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge
+                        ?.copyWith(height: 1.6),
+                    maxLines: 5,
+                    textAlign: TextAlign.center,
+                  ),
+                  Divider(
+                    color: Colors.white.withOpacity(0.15),
+                    height: 100,
+                  ),
+                ],
               ),
-              Text(
-                description,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(height: 1.6),
-              ),
-              Divider(
-                color: Colors.white.withOpacity(0.15),
-                height: 200,
-              ),
-            ],
-          ),
-        ),
-      ),
-      Expanded(
-        child: Entry.opacity(
-          duration: Constants.entryAnimationDuration,
-          delay: Constants.delay1,
-          child: Container(
-            height: 140,
-            alignment:
-                isReversed ? Alignment.centerLeft : Alignment.centerRight,
-            child: OverlappingText(
-              text: number,
-              offset: Offset(20, 10),
             ),
-          ),
-        ),
-      )
-    ];
+          ]
+        : [
+            Expanded(
+              flex: 2,
+              child: Entry.opacity(
+                duration: Constants.entryAnimationDuration,
+                delay: Constants.delay1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(height: 1.6, fontSize: 48),
+                    ),
+                    Text(
+                      description,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(height: 1.6),
+                    ),
+                    Divider(
+                      color: Colors.white.withOpacity(0.15),
+                      height: 200,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: Entry.opacity(
+                duration: Constants.entryAnimationDuration,
+                delay: Constants.delay1,
+                child: Container(
+                  height: 140,
+                  alignment:
+                      isReversed ? Alignment.centerLeft : Alignment.centerRight,
+                  child: OverlappingText(
+                    text: number,
+                    offset: Offset(20, 10),
+                  ),
+                ),
+              ),
+            )
+          ];
     return Entry.opacity(
       duration: Constants.entryAnimationDuration,
       child: Container(
         constraints: BoxConstraints(maxWidth: 1600),
-        padding: EdgeInsets.symmetric(horizontal: 100),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: isReversed ? children.reversed.toList() : children,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 20 : 100),
+        child: context.isMobile
+            ? LayoutBuilder(builder: (context, constraints) {
+                return Container(
+                  constraints: constraints,
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: children,
+                  ),
+                );
+              })
+            : Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: isReversed ? children.reversed.toList() : children,
+              ),
       ),
     );
   }

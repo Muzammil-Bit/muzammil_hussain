@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
               controller: _scrollController,
               children: [
                 // HeroWeb(scrollController: _scrollController),
-                ProjectProcessWeb(),
+                // ProjectProcessWeb(),
                 ExperienceWeb(),
                 RecentWorksWeb(),
                 ContactMe(),

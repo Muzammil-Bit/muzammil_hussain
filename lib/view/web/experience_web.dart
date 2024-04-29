@@ -21,8 +21,8 @@ class ExperienceWeb extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: 1500),
           margin: EdgeInsets.symmetric(horizontal: 100),
           child: Wrap(
-            alignment: WrapAlignment.spaceBetween,
-            runAlignment: WrapAlignment.spaceBetween,
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
             runSpacing: 100,
             children: [
               ExperienceSection(
@@ -78,6 +78,7 @@ class ExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       constraints: BoxConstraints(maxWidth: 400),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

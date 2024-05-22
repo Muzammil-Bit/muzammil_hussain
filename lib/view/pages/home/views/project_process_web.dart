@@ -9,8 +9,8 @@ import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:muzammil_hussain/view/widgets/overlapping_text.dart';
 import 'package:muzammil_hussain/view/widgets/section_title.dart';
 
-class ProjectProcessWeb extends StatelessWidget {
-  const ProjectProcessWeb({
+class ProjectProcessView extends StatelessWidget {
+  const ProjectProcessView({
     super.key,
   });
 
@@ -78,14 +78,14 @@ class _ProcessCard extends StatelessWidget {
     final children = context.isMobile
         ? [
             Entry.opacity(
-              duration: Constants.entryAnimationDuration,
-              delay: Constants.delay1,
+              duration: Constants.smallDelay,
+              delay: Constants.smallDelay,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Entry.opacity(
-                    duration: Constants.entryAnimationDuration,
-                    delay: Constants.delay1,
+                    duration: Constants.smallDelay,
+                    delay: Constants.smallDelay,
                     child: Transform.scale(
                       scale: 0.8,
                       child: Container(
@@ -127,8 +127,8 @@ class _ProcessCard extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Entry.opacity(
-                duration: Constants.entryAnimationDuration,
-                delay: Constants.delay1,
+                duration: Constants.smallDelay,
+                delay: Constants.smallDelay,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -156,8 +156,8 @@ class _ProcessCard extends StatelessWidget {
             ),
             Expanded(
               child: Entry.opacity(
-                duration: Constants.entryAnimationDuration,
-                delay: Constants.delay1,
+                duration: Constants.smallDelay,
+                delay: Constants.smallDelay,
                 child: Container(
                   height: 140,
                   alignment:
@@ -171,7 +171,7 @@ class _ProcessCard extends StatelessWidget {
             )
           ];
     return Entry.opacity(
-      duration: Constants.entryAnimationDuration,
+      duration: Constants.smallDelay,
       child: Container(
         constraints: BoxConstraints(maxWidth: 1600),
         padding: EdgeInsets.symmetric(horizontal: context.isMobile ? 20 : 100),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'web/contact_me.dart';
-import 'web/experience_web.dart';
-import 'web/footer_web.dart';
-import 'web/hero_web.dart';
-import 'web/project_process_web.dart';
-import 'web/recent_works_web.dart';
-import 'widgets/animated_cursor.dart';
-import 'widgets/theme_switcher_web.dart';
+import 'views/contact_me.dart';
+import 'views/experience_web.dart';
+import 'views/footer_view.dart';
+import 'views/hero_web.dart';
+import 'views/project_process_web.dart';
+import 'views/recent_works_view.dart';
+import '../../widgets/animated_cursor.dart';
+import '../../widgets/theme_switcher_web.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,15 +27,15 @@ class _HomePageState extends State<HomePage> {
             ListView(
               controller: _scrollController,
               children: [
-                // HeroWeb(scrollController: _scrollController),
-                // ProjectProcessWeb(),
-                ExperienceWeb(),
-                RecentWorksWeb(),
-                ContactMe(),
-                FooterWeb(),
+                HeroView(scrollController: _scrollController),
+                ProjectProcessView(),
+                ExperienceView(),
+                RecentWorksView(),
+                ContactMeView(),
+                FooterView(),
               ],
             ),
-            ThemeSwitcherWeb(),
+            ThemeSwitcher(),
           ],
         ),
       ),

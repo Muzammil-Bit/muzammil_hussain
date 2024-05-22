@@ -1,12 +1,14 @@
 {
-    "cSpell.words": [
-        "Boumd",
-        "Decotator",
-        "Goku",
-        "hussain",
-        "muzammil",
-        "playstore",
-        "Raleway",
-        "vsync"
-    ]
+  "cSpell.words": [
+    "Boumd",
+    "Decotator",
+    "Goku",
+    "hussain",
+    "muzammil",
+    "playstore",
+    "Raleway",
+    "Urkido",
+    "vsync"
+  ],
+  "dart.flutterSdkPath": "~/fvm/versions/3.19.6"
 }

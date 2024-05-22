@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:muzammil_hussain/config/assets.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:muzammil_hussain/models/recent_works.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-import '../widgets/section_title.dart';
+import '../../../widgets/section_title.dart';
 
-class RecentWorksWeb extends StatelessWidget {
-  const RecentWorksWeb({super.key});
+class RecentWorksView extends StatelessWidget {
+  const RecentWorksView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +22,16 @@ class RecentWorksWeb extends StatelessWidget {
         ),
         SizedBox(height: 180),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 1000),
+          constraints: BoxConstraints(maxWidth: 1024),
           child: GridView.builder(
             itemCount: RecentWork.works.length,
+            padding:
+                EdgeInsets.symmetric(horizontal: context.isMobile ? 20 : 80),
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 100,
+              crossAxisCount: context.isMobile ? 1 : 2,
+              mainAxisSpacing: context.isMobile ? 80 : 100,
               crossAxisSpacing: 80,
             ),
             itemBuilder: (context, index) {
@@ -64,11 +68,16 @@ class _WorkCardState extends State<WorkCard> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        alignment:
-            widget.isAtTop ? Alignment.topCenter : Alignment.bottomCenter,
+        alignment: context.isMobile
+            ? Alignment.center
+            : widget.isAtTop
+                ? Alignment.topCenter
+                : Alignment.bottomCenter,
         child: Container(
           constraints: BoxConstraints(
-            maxHeight: constraints.maxHeight * 0.8,
+            maxHeight: context.isMobile
+                ? constraints.maxHeight
+                : constraints.maxHeight * 0.8,
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
@@ -133,25 +142,25 @@ class _WorkCardState extends State<WorkCard> {
                                       width: 16,
                                       height: 16,
                                     ),
-                                    onTap: () {},
+                                    url: widget.work.playStoreUrl,
                                   ),
                                   SizedBox(width: 10),
                                   ExperienceCardButton(
                                     child: SvgPicture.asset(
-                                      Assets.playstore,
+                                      Assets.apple,
                                       width: 16,
                                       height: 16,
                                     ),
-                                    onTap: () {},
+                                    url: widget.work.appStoreUrl,
                                   ),
                                   SizedBox(width: 10),
                                   ExperienceCardButton(
                                     child: SvgPicture.asset(
-                                      Assets.playstore,
+                                      Assets.github,
                                       width: 16,
                                       height: 16,
                                     ),
-                                    onTap: () {},
+                                    url: widget.work.gitHubUrl,
                                   ),
                                 ],
                               ),
@@ -174,27 +183,10 @@ class _WorkCardState extends State<WorkCard> {
                       child: Text(
                         widget.work.title,
                         style: Theme.of(context).textTheme.labelSmall,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    // ElevatedButton(
-                    //   style: ButtonStyle(
-                    //     fixedSize: MaterialStateProperty.resolveWith(
-                    //         (states) => Size(constraints.maxWidth * 0.3, 40)),
-                    //     backgroundColor: MaterialStateProperty.resolveWith(
-                    //         (states) =>
-                    //             Theme.of(context).colorScheme.secondary),
-                    //     shape: MaterialStateProperty.resolveWith(
-                    //       (states) => RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(14),
-                    //       ),
-                    //     ),
-                    //   ),
-                    //   onPressed: () {},
-                    //   child: Text(
-                    //     "Live Preview",
-                    //     style: Theme.of(context).textTheme.bodyMedium,
-                    //   ),
-                    // ),
                   ],
                 ),
               )
@@ -210,11 +202,11 @@ class ExperienceCardButton extends StatefulWidget {
   const ExperienceCardButton({
     super.key,
     required this.child,
-    required this.onTap,
+    required this.url,
   });
 
   final Widget child;
-  final void Function() onTap;
+  final String? url;
 
   @override
   State<ExperienceCardButton> createState() => _ExperienceCardButtonState();
@@ -232,7 +224,12 @@ class _ExperienceCardButtonState extends State<ExperienceCardButton> {
         onEnter: (v) => setState(() => isHovering = true),
         onExit: (v) => setState(() => isHovering = false),
         child: InkWell(
-          onTap: widget.onTap,
+          onTap: () {
+            if (widget.url != null) {
+              launchUrlString(widget.url!);
+            }
+          },
+          mouseCursor: widget.url == null ? SystemMouseCursors.forbidden : null,
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
           child: Container(

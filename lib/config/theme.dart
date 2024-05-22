@@ -92,7 +92,7 @@ class ThemeConfig {
     return [
       defaultTheme,
       modifyThemeColor(defaultTheme, Color(0xffEF476F)),
-      modifyThemeColor(defaultTheme, Color(0xff6A47EF)),
+      modifyThemeColor(defaultTheme, Color.fromARGB(255, 239, 71, 211)),
       modifyThemeColor(defaultTheme, Color(0xff479FEF)),
       modifyThemeColor(defaultTheme, Color(0xffCBAC40)),
       modifyThemeColor(defaultTheme, Color(0xffC4DC662)),

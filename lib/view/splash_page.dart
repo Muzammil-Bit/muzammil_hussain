@@ -5,7 +5,7 @@ import '../config/colors.dart';
 import '../extensions/context_ext.dart';
 
 import 'animations/circular_reveal.dart';
-import 'home_page.dart';
+import 'pages/home/home_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

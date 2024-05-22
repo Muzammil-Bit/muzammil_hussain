@@ -1,9 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 
-import '../widgets/section_title.dart';
+import '../../../widgets/section_title.dart';
 
-class ExperienceWeb extends StatelessWidget {
-  const ExperienceWeb({super.key});
+class ExperienceView extends StatelessWidget {
+  const ExperienceView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class ExperienceWeb extends StatelessWidget {
         SizedBox(height: 250),
         Container(
           constraints: BoxConstraints(maxWidth: 1500),
-          margin: EdgeInsets.symmetric(horizontal: 100),
+          margin: EdgeInsets.symmetric(horizontal: context.isMobile ? 30 : 100),
           child: Wrap(
             alignment: WrapAlignment.center,
             runAlignment: WrapAlignment.center,
@@ -85,16 +88,17 @@ class ExperienceSection extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Text(
+              AutoSizeText(
                 title,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontSize: 40,
+                      fontSize: context.isMobile ? 28 : 40,
                       height: 0.5,
                     ),
+                maxLines: 1,
               ),
               Transform.translate(
                 offset: Offset(-10, -30),
-                child: Text(
+                child: AutoSizeText(
                   "$number",
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         fontSize: 58,
@@ -104,11 +108,12 @@ class ExperienceSection extends StatelessWidget {
                           ..strokeWidth = 1
                           ..color = Theme.of(context).colorScheme.secondary,
                       ),
+                  maxLines: 1,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 60),
+          SizedBox(height: context.isMobile ? 30 : 60),
           for (var desc in descriptions) ...[
             Row(
               children: [
@@ -126,12 +131,16 @@ class ExperienceSection extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 20),
-                Text(
-                  desc,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
-                      ),
+                Expanded(
+                  child: Text(
+                    desc,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: context.isMobile ? 12 : 15,
+                        ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),

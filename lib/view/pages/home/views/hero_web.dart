@@ -7,22 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:muzammil_hussain/extensions/context_ext.dart';
 
-import '../../config/constants.dart';
-import '../../extensions/theme_ex.dart';
-import '../widgets/overlapping_text.dart';
+import '../../../../config/constants.dart';
+import '../../../../extensions/theme_ex.dart';
+import '../../../widgets/overlapping_text.dart';
 
-class HeroWeb extends StatefulWidget {
-  const HeroWeb({
+class HeroView extends StatefulWidget {
+  const HeroView({
     super.key,
     required this.scrollController,
   });
   final ScrollController scrollController;
 
   @override
-  State<HeroWeb> createState() => _HeroWebState();
+  State<HeroView> createState() => _HeroViewState();
 }
 
-class _HeroWebState extends State<HeroWeb> {
+class _HeroViewState extends State<HeroView> {
   @override
   void initState() {
     super.initState();
@@ -94,7 +94,7 @@ class _HeroWebState extends State<HeroWeb> {
                 bottom: animate
                     ? 300
                     : context.isMobile
-                        ? 100
+                        ? 300
                         : 150,
                 child: OverlappingHeroText(
                   text: "U",
@@ -111,7 +111,7 @@ class _HeroWebState extends State<HeroWeb> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Entry.opacity(
-                        delay: Constants.delay1,
+                        delay: Constants.smallDelay,
                         child: OverlappingText(
                           text: "Muzammil",
                           offset: Offset(-_heroTitleFontSize(context) / 3,
@@ -127,7 +127,7 @@ class _HeroWebState extends State<HeroWeb> {
                         ),
                       ),
                       Entry.opacity(
-                        delay: Constants.delay1,
+                        delay: Constants.smallDelay,
                         child: Transform.translate(
                           offset: Offset(0, -20),
                           child: AutoSizeText(
@@ -145,8 +145,8 @@ class _HeroWebState extends State<HeroWeb> {
                       ),
                       SizedBox(height: 10),
                       Entry.opacity(
-                        delay: Constants.delay1,
-                        duration: Constants.entryAnimationDuration,
+                        delay: Constants.smallDelay,
+                        duration: Constants.smallDelay,
                         child: Container(
                           width: 500,
                           margin: EdgeInsets.symmetric(horizontal: 30),
@@ -169,6 +169,8 @@ class _HeroWebState extends State<HeroWeb> {
                               ],
                             ),
                             textAlign: TextAlign.center,
+                            maxLines: 9,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),
@@ -257,8 +259,8 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
       left: 0,
       right: 0,
       child: Entry.opacity(
-        delay: Constants.delay1,
-        duration: Constants.entryAnimationDuration,
+        delay: Constants.smallDelay,
+        duration: Constants.smallDelay,
         curve: Curves.ease,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

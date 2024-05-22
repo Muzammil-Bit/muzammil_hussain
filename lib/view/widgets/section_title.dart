@@ -35,7 +35,7 @@ class _SectionTitleState extends State<SectionTitle>
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Entry.opacity(
-        duration: Constants.entryAnimationDuration,
+        duration: Constants.smallDelay,
         child: Column(
           children: [
             Stack(
@@ -82,12 +82,13 @@ class _SectionTitleState extends State<SectionTitle>
             ),
             VisibilityDetector(
               onVisibilityChanged: (info) {
-                if (info.visibleFraction == 1 && isVisible == false) {
+                if (info.visibleFraction == 1 &&
+                    isVisible == false &&
+                    mounted) {
                   setState(() {
                     isVisible = true;
                   });
-                  log("HELLO");
-                } else if (info.visibleFraction == 0) {
+                } else if (info.visibleFraction == 0 && mounted) {
                   setState(() {
                     isVisible = false;
                   });

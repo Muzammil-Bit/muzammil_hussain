@@ -1,4 +1,8 @@
+import 'package:delightful_toast/delight_toast.dart';
+import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
+import 'package:flutter/services.dart';
 import 'package:muzammil_hussain/config/constants.dart';
 import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:muzammil_hussain/view/widgets/dotted_decoration.dart';
@@ -45,7 +49,34 @@ class _ContactMeCardState extends State<ContactMeCard> {
         ? MediaQuery.of(context).size.width - 50
         : 500.0;
     return GestureDetector(
-      onTap: () => launchUrlString("https://mailto:${Constants.email}"),
+      onTap: () async {
+        String mailUrl = 'mailto:${Constants.email}';
+        try {
+          await launchUrlString(mailUrl);
+        } catch (e) {
+          await Clipboard.setData(ClipboardData(text: Constants.email));
+
+          DelightToastBar(
+            snackbarDuration: Duration(seconds: 4),
+            autoDismiss: true,
+            builder: (context) => const ToastCard(
+              leading: Icon(
+                Icons.flutter_dash,
+                size: 28,
+              ),
+              title: Text(
+                "Email has been copied to your clipboard 🎉!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ).show(context);
+        }
+      },
       child: MouseRegion(
         onEnter: (val) {
           if (context.isMobile) return;

@@ -1,8 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
 
+import '../../../../extensions/context_ext.dart';
 import '../../../widgets/section_title.dart';
 
 class ExperienceView extends StatelessWidget {
@@ -30,31 +29,20 @@ class ExperienceView extends StatelessWidget {
             children: [
               ExperienceSection(
                 number: "01",
-                title: "UI DESIGN",
+                title: "MOBILE DEV",
                 descriptions: [
-                  "UI Design",
-                  "Web & Mobile",
-                  "Figma & photoshop and illustrator",
-                  "More in the future...",
-                ],
-              ),
-              ExperienceSection(
-                number: "02",
-                title: "FRONT END DEV",
-                descriptions: [
-                  "html & css (tailwindCss)",
-                  "javascript & React",
-                  "nextjs & Redux Toolkit",
-                  "Splide & Swiper and Framer Motion",
-                  "More in the future...",
+                  "Dart & Flutter",
+                  "MVC MVVM & Bloc",
+                  "Third party integrations",
+                  "And much more....",
                 ],
               ),
               ExperienceSection(
                 number: "03",
                 title: "BACKEND DEV",
                 descriptions: [
-                  "NodeJs & Express",
-                  "MongoDB (Mongoose) & Firebase",
+                  "PHP & Laravel",
+                  "Mysql & Firebase",
                   "PassportJs & JWT",
                   "More in the future..."
                 ],
@@ -81,8 +69,8 @@ class ExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
       constraints: BoxConstraints(maxWidth: 400),
+      margin: EdgeInsets.only(left: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

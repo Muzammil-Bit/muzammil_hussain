@@ -1,25 +1,21 @@
 # Personal Portfolio
 
-My Personal Portfolio website made with Flutter 🍃🍒❤️
+My Personal Portfolio website crafted with Flutter 💜
 
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](#)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source-150x25.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-![Project Thumbnail](assets/images/thumbnails/portfolio_thumbnail.png)
+![Project Thumbnail](assets/images/project-thumnail.png)
 
 ## 📑 Overview
 
-This is my personal portfolio website v1 built with Flutter - available for multiple platforms : website , android, ios and windows
+This is my personal portfolio website v0.01 (Still a work in progress) built with Flutter - available for multiple platforms : website , android, ios and windows
 
 ### 🗝️ Key Features:
 
-- Home Page
-- Projects Page
-- Project Details Page
-- Experiences Page
-- Certificates Page
-- About Page
-- Contact Me Page
-- Firebase Integration
+- Fully Responsive 🤌🏻
+- Dynamic Themes 🥂
+- Beautiful Animations 🎠
+- Recent Works Section (With support for play store and github links) 🤙🏻
 
 ### 🔗 Preview Links:
 
@@ -30,11 +26,7 @@ This is my personal portfolio website v1 built with Flutter - available for mult
 
 This project is licensed under [BSD 3-Clause License](LICENSE).
 
-### Want a short preview?
-
-![Walkghrough video](assets/images/thumbnails/portfolio_peek.gif)
-
 Feel free to check it out and give it a ⭐ if you like it.
 Follow me for more updates and more projects ...
 
-Copyright (©️) 2023 **YE LWIN OO**
+Copyright (©️) 2023 **Muzammil Hussain**

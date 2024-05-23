@@ -47,11 +47,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       upperBound: upperBoumd,
     );
 
-    Cubic easeOutBack = Cubic(0.175, 0.9, 0.42, 1.675);
+    Cubic easeOutBack = Cubic(0.175, 0.9, 0.48, 1.375);
     _textAnimation = Tween<double>(begin: lowerBoumd, end: upperBoumd).animate(
       CurvedAnimation(
         parent: _textAnimationController,
-        // curve: easeOutBack,
         curve: easeOutBack,
       ),
     );

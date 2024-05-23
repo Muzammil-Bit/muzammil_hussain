@@ -60,6 +60,7 @@ class _HeroViewState extends State<HeroView> {
           return Stack(
             clipBehavior: Clip.none,
             children: [
+              _bgGradient(context),
               _WeatherAndTime(),
               AnimatedPositioned(
                 duration: animDuration,
@@ -70,10 +71,13 @@ class _HeroViewState extends State<HeroView> {
                     : context.isMobile
                         ? 50
                         : 100,
-                child: OverlappingHeroText(
-                  text: "M",
-                  initialXOffset: 200,
-                  initialYOffset: 200,
+                child: Opacity(
+                  opacity: 0.8,
+                  child: OverlappingHeroText(
+                    text: "M",
+                    initialXOffset: 200,
+                    initialYOffset: 200,
+                  ),
                 ),
               ),
               AnimatedPositioned(
@@ -102,7 +106,6 @@ class _HeroViewState extends State<HeroView> {
                   initialYOffset: 200,
                 ),
               ),
-              _bgGradient(context),
               Align(
                 alignment: Alignment.center,
                 child: Padding(
@@ -198,7 +201,7 @@ class _HeroViewState extends State<HeroView> {
 
   Widget _bgGradient(BuildContext context) {
     return Positioned(
-      top: -250,
+      top: context.isMobile ? -40 : -250,
       child: Opacity(
         opacity: 0.6,
         child: Entry.offset(

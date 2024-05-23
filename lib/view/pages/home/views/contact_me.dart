@@ -45,7 +45,7 @@ class _ContactMeCardState extends State<ContactMeCard> {
         ? MediaQuery.of(context).size.width - 50
         : 500.0;
     return GestureDetector(
-      onTap: () => launchUrlString("mailto:${Constants.email}"),
+      onTap: () => launchUrlString("https://mailto:${Constants.email}"),
       child: MouseRegion(
         onEnter: (val) {
           if (context.isMobile) return;

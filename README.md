@@ -19,8 +19,7 @@ This is my personal portfolio website v0.01 (Still a work in progress) built wit
 
 ### 🔗 Preview Links:
 
-- 🕸️ [Web Version: https://ye-lwin-oo.vercel.app](https://ye-lwin-oo.vercel.app)
-- 📱 [Mobile Version](http://u.pc.cd/oJ17)
+- 🕸️ [Web Version: https://muzammil-hussain.vercel.app/](https://muzammil-hussain.vercel.app/)
 
 ### 🪪 Project License:
 

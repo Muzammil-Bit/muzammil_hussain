@@ -5,17 +5,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
 
 import '../../../../config/constants.dart';
+import '../../../../extensions/context_ext.dart';
 import '../../../../extensions/theme_ex.dart';
+import '../../../widgets/nav_bar.dart';
 import '../../../widgets/overlapping_text.dart';
 
 class HeroView extends StatefulWidget {
-  const HeroView({
-    super.key,
-    required this.scrollController,
-  });
+  const HeroView({super.key, required this.scrollController});
   final ScrollController scrollController;
 
   @override
@@ -29,16 +27,16 @@ class _HeroViewState extends State<HeroView> {
     widget.scrollController.addListener(_scrollListener);
   }
 
-  bool animate = false;
+  bool _isScrolled = false;
 
   _scrollListener() {
-    if (widget.scrollController.offset >= 200 && animate == false) {
+    if (widget.scrollController.offset >= 200 && _isScrolled == false) {
       setState(() {
-        animate = true;
+        _isScrolled = true;
       });
-    } else if (widget.scrollController.offset <= 200 && animate == true) {
+    } else if (widget.scrollController.offset <= 200 && _isScrolled == true) {
       setState(() {
-        animate = false;
+        _isScrolled = false;
       });
     }
   }
@@ -51,7 +49,7 @@ class _HeroViewState extends State<HeroView> {
 
   @override
   Widget build(BuildContext context) {
-    final Duration animDuration = Duration(milliseconds: 200);
+    final Duration _animDuration = Duration(milliseconds: 200);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -63,14 +61,10 @@ class _HeroViewState extends State<HeroView> {
               _bgGradient(context),
               _WeatherAndTime(),
               AnimatedPositioned(
-                duration: animDuration,
+                duration: _animDuration,
                 curve: Curves.easeOut,
-                right: context.isMobile ? 20 : constraints.maxWidth * 0.1,
-                top: animate
-                    ? 300
-                    : context.isMobile
-                        ? 50
-                        : 100,
+                right: context.isMobile ? 100 : constraints.maxWidth * 0.1,
+                top: _isScrolled ? 300 : 100,
                 child: Opacity(
                   opacity: 0.8,
                   child: OverlappingHeroText(
@@ -81,9 +75,9 @@ class _HeroViewState extends State<HeroView> {
                 ),
               ),
               AnimatedPositioned(
-                duration: animDuration,
+                duration: _animDuration,
                 curve: Curves.easeOut,
-                bottom: animate ? -100 : -50,
+                bottom: _isScrolled ? -100 : -50,
                 right: constraints.maxWidth * 0.2,
                 child: OverlappingHeroText(
                   text: "Z",
@@ -93,9 +87,9 @@ class _HeroViewState extends State<HeroView> {
               ),
               AnimatedPositioned(
                 left: context.isMobile ? 30 : 150,
-                duration: animDuration,
+                duration: _animDuration,
                 curve: Curves.easeOut,
-                bottom: animate
+                bottom: _isScrolled
                     ? 300
                     : context.isMobile
                         ? 300
@@ -119,13 +113,16 @@ class _HeroViewState extends State<HeroView> {
                           text: "Muzammil",
                           offset: Offset(-_heroTitleFontSize(context) / 3,
                               -_heroTitleFontSize(context) / 3),
+                          foreGroundStyle: Theme.of(context)
+                              .textTheme
+                              .headlineLarge
+                              ?.copyWith(
+                                fontSize: _heroTitleFontSize(context),
+                              ),
                           backgroundStyle: TextStyle(
                             fontSize: _heroTitleFontSize(context),
                             fontFamily: "Goku",
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 1
-                              ..color = Theme.of(context).colorScheme.secondary,
+                            foreground: Constants.outLinedText(context),
                           ),
                         ),
                       ),
@@ -139,6 +136,7 @@ class _HeroViewState extends State<HeroView> {
                                 .textTheme
                                 .headlineLarge
                                 ?.copyWith(
+
                                     // fontSize: _heroTitleFontSize(context),
                                     ),
                             maxLines: 1,
@@ -164,7 +162,7 @@ class _HeroViewState extends State<HeroView> {
                               children: [
                                 TextSpan(
                                     text:
-                                        " from Multan, Pakistan, been working as a freelancer and in tech companies for years with a straight focus on the flutter and mobile world. Excited for the upcoming opportunities.",
+                                        ", been working as a freelancer and in tech companies for years with a straight focus on the flutter and mobile world. Excited for the upcoming opportunities.",
                                     style: TextStyle(
                                       fontSize: context.isDeskTop ? 16 : 12,
                                       fontWeight: FontWeight.w300,
@@ -181,6 +179,7 @@ class _HeroViewState extends State<HeroView> {
                   ),
                 ),
               ),
+              NavBar(),
             ],
           );
         },

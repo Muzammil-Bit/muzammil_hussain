@@ -10,11 +10,13 @@ class OverlappingText extends StatefulWidget {
     this.offset = const Offset(-10, 10),
     required this.text,
     this.backgroundStyle,
+    this.foreGroundStyle,
     this.backgroundText,
   });
   final Offset offset;
   final String text;
   final TextStyle? backgroundStyle;
+  final TextStyle? foreGroundStyle;
   final String? backgroundText;
 
   @override
@@ -51,7 +53,7 @@ class _OverlappingTextState extends State<OverlappingText>
         AutoSizeText(
           widget.text,
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                fontSize: widget.backgroundStyle?.fontSize ?? 120,
+                fontSize: widget.foreGroundStyle?.fontSize ?? 120,
               ),
           maxLines: 1,
         ),
@@ -122,6 +124,7 @@ class _OverlappingHeroTextState extends State<OverlappingHeroText>
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontSize:
                       context.getResponsiveValue([60, 80, 120]).toDouble(),
+                  fontWeight: FontWeight.bold,
                 ),
           ),
         ],

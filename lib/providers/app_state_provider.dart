@@ -3,13 +3,21 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../repositories/theme_repo.dart';
 
-class ThemeProvider extends ChangeNotifier {
+class AppStateProvider extends ChangeNotifier {
   final ThemeRepo _themeRepo;
 
-  ThemeProvider(this._themeRepo) {
+  bool _isNavBarOpen = false;
+  bool get isNavBarOpen => _isNavBarOpen;
+
+  AppStateProvider(this._themeRepo) {
     Future.delayed(Duration(milliseconds: 300), () {
       initCurrentTheme();
     });
+  }
+
+  toggleNav() {
+    _isNavBarOpen = !_isNavBarOpen;
+    notifyListeners();
   }
 
   initCurrentTheme() async {

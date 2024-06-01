@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';
 import '../../config/theme.dart';
-import '../../providers/theme_provider.dart';
+import '../../providers/app_state_provider.dart';
 
 class ThemeSwitcher extends StatelessWidget {
   const ThemeSwitcher({
@@ -37,7 +37,7 @@ class _ThemeSwitcherWeb extends StatelessWidget {
       left: 20,
       bottom: 0,
       top: 0,
-      child: Consumer<ThemeProvider>(builder: (context, provider, child) {
+      child: Consumer<AppStateProvider>(builder: (context, provider, child) {
         return Entry.all(
           delay: Constants.smallDelay,
           xOffset: -20,
@@ -55,7 +55,7 @@ class _ThemeSwitcherWeb extends StatelessWidget {
                     index: i,
                     isActive: i == provider.currentIndex,
                     onTap: () {
-                      context.read<ThemeProvider>().updateThemeIndex(i);
+                      context.read<AppStateProvider>().updateThemeIndex(i);
                     },
                   ),
                   if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
@@ -81,7 +81,7 @@ class _ThemSwitcherMobileState extends State<_ThemSwitcherMobile> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<ThemeProvider>();
+    final provider = context.read<AppStateProvider>();
     return AnimatedPositioned(
         left: 20,
         bottom: _isOpened ? 30 : 10,
@@ -125,7 +125,9 @@ class _ThemSwitcherMobileState extends State<_ThemSwitcherMobile> {
                           index: i,
                           isActive: i == provider.currentIndex,
                           onTap: () {
-                            context.read<ThemeProvider>().updateThemeIndex(i);
+                            context
+                                .read<AppStateProvider>()
+                                .updateThemeIndex(i);
                             setState(() {
                               _isOpened = !_isOpened;
                             });

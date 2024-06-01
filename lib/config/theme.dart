@@ -15,7 +15,10 @@ class ThemeConfig {
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.primary,
       textTheme: TextTheme(
-        headlineLarge: const TextStyle(fontSize: 127, fontFamily: "Goku"),
+        headlineLarge: const TextStyle(
+          fontSize: 127,
+          fontFamily: "Goku",
+        ),
         headlineMedium: const TextStyle(
           fontSize: 70,
           fontWeight: semiBold,
@@ -32,11 +35,11 @@ class ThemeConfig {
           fontFamily: "Goku",
         ),
         titleMedium: const TextStyle(
-          // fontSize: s38,
+          fontSize: 38,
           fontWeight: bold,
+          fontFamily: "Goku",
         ),
         titleSmall: const TextStyle(
-          // fontSize: s32,
           fontWeight: bold,
         ),
         labelLarge: const TextStyle(

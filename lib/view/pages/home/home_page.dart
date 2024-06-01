@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import '../../widgets/animated_nav_drawer_button.dart';
+import '../../widgets/nav_bar.dart';
 
+import '../../widgets/animated_cursor.dart';
+import '../../widgets/theme_switcher_web.dart';
 import 'views/contact_me.dart';
 import 'views/experience_view.dart';
 import 'views/footer_view.dart';
 import 'views/hero_view.dart';
 import 'views/project_process_web.dart';
 import 'views/recent_works_view.dart';
-import '../../widgets/animated_cursor.dart';
-import '../../widgets/theme_switcher_web.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,9 +30,9 @@ class _HomePageState extends State<HomePage> {
               controller: _scrollController,
               children: [
                 HeroView(scrollController: _scrollController),
-                ProjectProcessView(),
-                ExperienceView(),
                 RecentWorksView(),
+                ExperienceView(),
+                ProjectProcessView(),
                 ContactMeView(),
                 FooterView(),
               ],
@@ -42,3 +44,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+// class NavWrapper extends StatelessWidget {
+//   const NavWrapper({super.key, required this.child});
+//   final Widget child;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       child: Stack(
+//         children: [
+//           child,
+//           NavBar(),
+//         ],
+//       ),
+//     );
+//   }
+// }

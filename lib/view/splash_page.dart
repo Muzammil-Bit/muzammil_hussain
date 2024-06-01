@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/view/widgets/page_transition.dart';
-
-import '../config/colors.dart';
-import '../extensions/context_ext.dart';
 
 import 'animations/circular_reveal.dart';
 import 'pages/home/home_page.dart';
+import 'widgets/page_transition.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -36,7 +33,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         Tween<double>(begin: lowerBoumd, end: upperBoumd).animate(
       CurvedAnimation(
         parent: _gradientAnimationController,
-        curve: Cubic(0.0, 0.9, 0.8, 0.01),
+        curve: Cubic(.14, .59, .84, -0.31),
       ),
     );
 
@@ -78,28 +75,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   color: Colors.black,
                 ),
               ),
-
-              // Positioned.fill(
-              //   child: AnimatedBuilder(
-              //       animation: _gradientAnimation,
-              //       builder: (context, child) {
-              //         return Container(
-              //           width: MediaQuery.of(context).size.height,
-              //           height: MediaQuery.of(context).size.height,
-              //           decoration: BoxDecoration(
-              //             gradient: RadialGradient(
-              //               focalRadius: _gradientAnimation.value,
-              //               radius: _gradientAnimation.value * 1.8,
-              //               stops: [_gradientAnimation.value, 0.9],
-              //               colors: [
-              //                 Colors.black,
-              //                 AppColors.secondary,
-              //               ],
-              //             ),
-              //           ),
-              //         );
-              //       }),
-              // ),
               Align(
                 alignment: Alignment.center,
                 child: AnimatedBuilder(

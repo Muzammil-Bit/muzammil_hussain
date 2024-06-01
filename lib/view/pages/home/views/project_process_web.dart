@@ -46,7 +46,7 @@ class ProjectProcessView extends StatelessWidget {
             number: "03",
             title: "Development",
             description:
-                "I specialize in Next.js, the optimal choice for enhancing website SEO. With the efficiency of Tailwind CSS, I expedite project completion. My commitment includes optimizing websites according to contemporary web standards, prioritizing speed, security, and reliability.",
+                "I specialize in Flutter, the optimal choice for building elegant looking mobile applications. I expedite project completion. My commitment includes optimizing mobile apps performance by following up to date coding standards, prioritizing speed, security, and reliability.",
           ),
           _ProcessCard(
             number: "04",

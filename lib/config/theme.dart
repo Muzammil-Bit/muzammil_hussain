@@ -41,6 +41,8 @@ class ThemeConfig {
         ),
         titleSmall: const TextStyle(
           fontWeight: bold,
+          fontSize: 26,
+          fontFamily: "Raleway",
         ),
         labelLarge: const TextStyle(
           fontSize: 48,

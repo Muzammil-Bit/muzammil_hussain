@@ -49,7 +49,7 @@ class _SectionTitleState extends State<SectionTitle>
                   delay: Duration(milliseconds: 1500),
                   child: Transform.translate(
                     offset: context.getResponsiveValue(
-                        [Offset(0, -30), Offset(-70, -40), Offset(-70, -60)]),
+                        [Offset(0, -30), Offset(-70, -40), Offset(-70, -50)]),
                     child: AutoSizeText(
                       widget.backgroundText,
                       style: Theme.of(context)
@@ -74,9 +74,9 @@ class _SectionTitleState extends State<SectionTitle>
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         fontSize:
                             context.getResponsiveValue([40, 50, 60]).toDouble(),
-                        height: 0.5,
+                        height: 1,
                       ),
-                  maxLines: 1,
+                  maxLines: 2,
                 ),
               ],
             ),
@@ -105,10 +105,10 @@ class _SectionTitleState extends State<SectionTitle>
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: AnimatedContainer(
-                            curve: Curves.ease,
-                            color: Colors.white.withOpacity(0.4),
-                            duration: Duration(milliseconds: 800),
-                            height: 0.5,
+                            curve: Curves.easeOutCirc,
+                            color: Colors.white,
+                            duration: Duration(milliseconds: 2000),
+                            height: 1,
                             width: isVisible ? 400 : 0,
                           ),
                         ),
@@ -119,7 +119,7 @@ class _SectionTitleState extends State<SectionTitle>
                         duration: Duration(milliseconds: 500),
                         child: AnimatedSlide(
                           duration: Duration(milliseconds: 500),
-                          curve: Curves.easeOutBack,
+                          curve: Curves.easeOutCirc,
                           offset: isVisible ? Offset(0, 0) : Offset(2, 0),
                           child: Text(widget.subTitle),
                         ),

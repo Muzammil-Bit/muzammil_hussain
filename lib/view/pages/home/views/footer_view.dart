@@ -33,8 +33,8 @@ class FooterView extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(
-            left: context.isMobile ? 20 : 100,
-            right: context.isMobile ? 20 : 100,
+            left: context.isMobile ? 20 : 30,
+            right: context.isMobile ? 20 : 30,
             bottom: 150,
           ),
           clipBehavior: Clip.none,

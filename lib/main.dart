@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/view/pages/about/about_page.dart';
+import 'package:muzammil_hussain/view/pages/contact/contact_page.dart';
+import 'package:muzammil_hussain/view/pages/home/views/contact_me.dart';
+import 'package:muzammil_hussain/view/pages/works/works_page.dart';
 import 'package:muzammil_hussain/view/splash_page.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -26,8 +30,11 @@ class MyApp extends StatelessWidget {
         title: 'Muzammil Hussain',
         debugShowCheckedModeBanner: false,
         theme: provider.currentTheme,
-        home: const HomePage(),
+        // home: AboutPage(),
+        // home: const HomePage(),
         // home: SplashPage(),
+        // home: ContactPage(),
+        home: WorksPage(),
       );
     });
   }

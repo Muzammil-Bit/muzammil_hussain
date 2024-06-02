@@ -7,6 +7,11 @@ extension ContextExt on BuildContext {
     Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
   }
 
+  pushReplacement(Widget widget) {
+    Navigator.of(this)
+        .pushReplacement(MaterialPageRoute(builder: (_) => widget));
+  }
+
   bool get isTablet =>
       MediaQuery.of(this).size.width <= 1025 &&
       MediaQuery.of(this).size.width >= 770;

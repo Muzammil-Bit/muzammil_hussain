@@ -1,101 +1,124 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
-import 'package:muzammil_hussain/view/pages/works/works_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';
 import '../../extensions/color_ext.dart';
+import '../../extensions/context_ext.dart';
 import '../../providers/app_state_provider.dart';
+import '../pages/about/about_page.dart';
+import '../pages/contact/contact_page.dart';
+import '../pages/home/home_page.dart';
+import '../pages/works/works_page.dart';
 import 'animated_nav_drawer_button.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+class AnimatedNavWrapper extends StatefulWidget {
+  const AnimatedNavWrapper({
+    super.key,
+    required this.child,
+  });
+  final Widget child;
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<AnimatedNavWrapper> createState() => _AnimatedNavWrapperState();
 }
 
-class _NavBarState extends State<NavBar> {
+class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
   @override
   Widget build(BuildContext context) {
-    return Positioned.fill(
-      child: Consumer<AppStateProvider>(builder: (context, value, child) {
-        return Stack(
-          children: [
-            AnimatedPositioned(
-              top: value.isNavBarOpen ? 0 : -MediaQuery.of(context).size.height,
-              left: 0,
-              right: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  gradient: RadialGradient(
-                    center: Alignment.topRight,
-                    radius: 0.6,
-                    focal: Alignment.topRight,
-                    colors: [
-                      Theme.of(context).colorScheme.secondary.darken(0.4),
-                      Colors.black
-                    ],
-                  ),
-                ),
-                child: AnimatedOpacity(
-                  opacity: value.isNavBarOpen ? 1 : 0,
-                  duration: Duration(milliseconds: 1500),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AnimatedNaveItem(
-                        title: "Works",
-                        onTap: () {
-                          context.push(WorksPage());
-                        },
+    return Stack(
+      children: [
+        widget.child,
+        Positioned.fill(
+          child: Consumer<AppStateProvider>(builder: (context, value, child) {
+            return Stack(
+              children: [
+                AnimatedPositioned(
+                  top: value.isNavBarOpen
+                      ? 0
+                      : -MediaQuery.of(context).size.height,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      gradient: RadialGradient(
+                        center: Alignment.topRight,
+                        radius: 0.6,
+                        focal: Alignment.topRight,
+                        colors: [
+                          Theme.of(context).colorScheme.secondary.darken(0.4),
+                          Colors.black
+                        ],
                       ),
-                      AnimatedNaveItem(
-                        title: "About",
-                        onTap: () {},
+                    ),
+                    child: AnimatedOpacity(
+                      opacity: value.isNavBarOpen ? 1 : 0,
+                      duration: Duration(milliseconds: 1500),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedNaveItem(
+                            title: "Works",
+                            onTap: () {
+                              context.push(WorksPage());
+                            },
+                          ),
+                          AnimatedNaveItem(
+                            title: "About",
+                            onTap: () => context.push(AboutPage()),
+                          ),
+                          AnimatedNaveItem(
+                            title: "Contact",
+                            onTap: () => context.push(ContactPage()),
+                          ),
+                        ],
                       ),
-                      AnimatedNaveItem(
-                        title: "Contact",
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              duration: Duration(milliseconds: 1000),
-              curve: Curves.ease,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      text: "MH",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge
-                          ?.copyWith(fontSize: 35, letterSpacing: 3),
-                      children: [
-                        TextSpan(
-                          text: ".",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary),
-                        ),
-                      ],
                     ),
                   ),
-                  AnimatedNavDrawerButton()
-                ],
-              ),
-            ),
-          ],
-        );
-      }),
+                  duration: Duration(milliseconds: 1000),
+                  curve: Curves.ease,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        overlayColor: MaterialStateProperty.resolveWith(
+                            (states) => Colors.transparent),
+                        onTap: () {
+                          context.pushReplacement(HomePage());
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            text: "MH",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(fontSize: 35, letterSpacing: 3),
+                            children: [
+                              TextSpan(
+                                text: ".",
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      AnimatedNavDrawerButton()
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }),
+        ),
+      ],
     );
   }
 }
@@ -168,7 +191,10 @@ class _AnimatedNaveItemState extends State<AnimatedNaveItem> {
               onExit: (event) => setState(() => _isHovered = false),
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                onTap: widget.onTap,
+                onTap: () {
+                  context.read<AppStateProvider>().toggleNav();
+                  widget.onTap();
+                },
                 child: Text(
                   widget.title,
                   style: Theme.of(context).textTheme.titleMedium,

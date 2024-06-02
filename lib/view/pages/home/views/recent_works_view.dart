@@ -182,7 +182,7 @@ class _WorkCardState extends State<WorkCard> {
                     Expanded(
                       child: Text(
                         widget.work.title,
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: Theme.of(context).textTheme.bodyLarge,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

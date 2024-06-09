@@ -32,9 +32,9 @@ class MyApp extends StatelessWidget {
         theme: provider.currentTheme,
         // home: AboutPage(),
         // home: const HomePage(),
-        // home: SplashPage(),
+        home: SplashPage(),
         // home: ContactPage(),
-        home: WorksPage(),
+        // home: WorksPage(),
       );
     });
   }

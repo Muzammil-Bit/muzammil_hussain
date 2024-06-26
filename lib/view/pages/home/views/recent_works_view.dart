@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muzammil_hussain/config/assets.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
-import 'package:muzammil_hussain/models/recent_works.dart';
+import '../../../../config/assets.dart';
+import '../../../../extensions/context_ext.dart';
+import '../../../../models/recent_works.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../widgets/section_title.dart';

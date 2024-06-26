@@ -1,13 +1,10 @@
-import 'package:delightful_toast/delight_toast.dart';
-import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
-import 'package:flutter/services.dart';
-import 'package:muzammil_hussain/config/constants.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
-import 'package:muzammil_hussain/view/widgets/dotted_decoration.dart';
-import 'package:muzammil_hussain/view/widgets/section_title.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../extensions/context_ext.dart';
+import '../../../router/routes.dart';
+import '../../../widgets/dotted_decoration.dart';
+import '../../../widgets/section_title.dart';
 
 class ContactMeView extends StatefulWidget {
   const ContactMeView({super.key});
@@ -28,20 +25,18 @@ class _ContactMeViewState extends State<ContactMeView> {
           subTitle: "GO AHEAD!",
         ),
         SizedBox(height: 200),
-        ContactMeCard(),
+        _ContactMeCard(),
       ],
     );
   }
 }
 
-class ContactMeCard extends StatefulWidget {
-  const ContactMeCard({super.key});
-
+class _ContactMeCard extends StatefulWidget {
   @override
-  State<ContactMeCard> createState() => _ContactMeCardState();
+  State<_ContactMeCard> createState() => _ContactMeCardState();
 }
 
-class _ContactMeCardState extends State<ContactMeCard> {
+class _ContactMeCardState extends State<_ContactMeCard> {
   bool isHovering = false;
   @override
   Widget build(BuildContext context) {
@@ -49,34 +44,7 @@ class _ContactMeCardState extends State<ContactMeCard> {
         ? MediaQuery.of(context).size.width - 50
         : 500.0;
     return GestureDetector(
-      onTap: () async {
-        String mailUrl = 'mailto:${Constants.email}';
-        try {
-          await launchUrlString(mailUrl);
-        } catch (e) {
-          await Clipboard.setData(ClipboardData(text: Constants.email));
-
-          DelightToastBar(
-            snackbarDuration: Duration(seconds: 4),
-            autoDismiss: true,
-            builder: (context) => const ToastCard(
-              leading: Icon(
-                Icons.flutter_dash,
-                size: 28,
-              ),
-              title: Text(
-                "Email has been copied to your clipboard 🎉!",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ).show(context);
-        }
-      },
+      onTap: () => context.go(Routes.contact),
       child: MouseRegion(
         onEnter: (val) {
           if (context.isMobile) return;

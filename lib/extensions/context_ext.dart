@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
-  push(Widget widget) {
-    Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
-  }
+  // push(Widget widget) {
+  //   Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
+  // }
 
-  pushReplacement(Widget widget) {
-    Navigator.of(this)
-        .pushReplacement(MaterialPageRoute(builder: (_) => widget));
-  }
+  // pushReplacement(Widget widget) {
+  //   Navigator.of(this)
+  //       .pushReplacement(MaterialPageRoute(builder: (_) => widget));
+  // }
 
   bool get isTablet =>
       MediaQuery.of(this).size.width <= 1025 &&

@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/config/constants.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+
+import '../../config/constants.dart';
+import '../../extensions/context_ext.dart';
 
 class SectionTitle extends StatefulWidget {
   const SectionTitle({

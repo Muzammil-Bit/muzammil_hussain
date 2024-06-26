@@ -1,9 +1,8 @@
-import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/view/widgets/app_text_field.dart';
 
 import '../../../config/constants.dart';
 import '../../../extensions/context_ext.dart';
+import '../../widgets/app_text_field.dart';
 import '../../widgets/nav_bar.dart';
 import '../../widgets/section_title.dart';
 import '../home/views/footer_view.dart';

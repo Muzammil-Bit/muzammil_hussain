@@ -1,6 +1,6 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
+import '../../extensions/context_ext.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';

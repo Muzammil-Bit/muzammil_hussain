@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';
 import '../../extensions/color_ext.dart';
-import '../../extensions/context_ext.dart';
 import '../../providers/app_state_provider.dart';
-import '../pages/about/about_page.dart';
-import '../pages/contact/contact_page.dart';
-import '../pages/home/home_page.dart';
-import '../pages/works/works_page.dart';
+import '../router/routes.dart';
 import 'animated_nav_drawer_button.dart';
 
 class AnimatedNavWrapper extends StatefulWidget {
@@ -62,16 +59,16 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                           AnimatedNaveItem(
                             title: "Works",
                             onTap: () {
-                              context.push(WorksPage());
+                              context.go(Routes.works);
                             },
                           ),
                           AnimatedNaveItem(
                             title: "About",
-                            onTap: () => context.push(AboutPage()),
+                            onTap: () => context.go(Routes.about),
                           ),
                           AnimatedNaveItem(
                             title: "Contact",
-                            onTap: () => context.push(ContactPage()),
+                            onTap: () => context.go(Routes.contact),
                           ),
                         ],
                       ),
@@ -89,7 +86,7 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                         overlayColor: MaterialStateProperty.resolveWith(
                             (states) => Colors.transparent),
                         onTap: () {
-                          context.pushReplacement(HomePage());
+                          context.go(Routes.home);
                         },
                         child: Text.rich(
                           TextSpan(

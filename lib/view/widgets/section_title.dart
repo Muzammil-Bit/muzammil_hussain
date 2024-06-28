@@ -101,8 +101,8 @@ class _SectionTitleState extends State<SectionTitle>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Expanded(
-                        child: Align(
-                          alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 50),
                           child: AnimatedContainer(
                             curve: Curves.easeOutCirc,
                             color: Colors.white,

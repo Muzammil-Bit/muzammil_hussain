@@ -38,6 +38,9 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         ListView(
                           controller: _scrollController,
+                          physics: value.isNavBarOpen
+                              ? NeverScrollableScrollPhysics()
+                              : null,
                           children: [
                             HeroView(scrollController: _scrollController),
                             RecentWorksView(),

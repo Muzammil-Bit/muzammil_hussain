@@ -57,18 +57,24 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AnimatedNaveItem(
-                            title: "Works",
+                            title: "Experience",
+                            onTap: () {
+                              context.go(Routes.experience);
+                            },
+                          ),
+                          AnimatedNaveItem(
+                            title: "Projects",
                             onTap: () {
                               context.go(Routes.works);
                             },
                           ),
                           AnimatedNaveItem(
-                            title: "About",
-                            onTap: () => context.go(Routes.about),
-                          ),
-                          AnimatedNaveItem(
                             title: "Contact",
                             onTap: () => context.go(Routes.contact),
+                          ),
+                          AnimatedNaveItem(
+                            title: "About",
+                            onTap: () => context.go(Routes.about),
                           ),
                         ],
                       ),
@@ -138,7 +144,7 @@ class _AnimatedNaveItemState extends State<AnimatedNaveItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -153,13 +159,17 @@ class _AnimatedNaveItemState extends State<AnimatedNaveItem> {
               bottom: 0,
               left: _isHovered
                   ? 0
-                  : -MediaQuery.of(context).size.width * 0.3 - 30,
+                  : -MediaQuery.of(context).size.width * 0.4 - 30,
               child: Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: 0.8,
-                  decoration:
-                      BoxDecoration(color: Colors.white.withOpacity(0.5)),
+                child: Transform.translate(
+                  offset: Offset(0, -5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: 0.8,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
                 ),
               ),
             ),

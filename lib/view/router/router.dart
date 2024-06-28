@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/view/pages/experience/experience_page.dart';
+import 'package:muzammil_hussain/view/router/route_transition.dart';
 import '../pages/about/about_page.dart';
 import '../pages/contact/contact_page.dart';
 import '../pages/home/home_page.dart';
@@ -23,6 +25,10 @@ final router = GoRouter(
     GoRoute(
       path: Routes.works,
       builder: (context, state) => WorksPage(),
+    ),
+    GoRoute(
+      path: Routes.experience,
+      builder: (context, state) => ExperiencePage(),
     ),
   ],
 );

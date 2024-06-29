@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:muzammil_hussain/view/widgets/nav_bar.dart';
-import 'package:muzammil_hussain/view/widgets/section_title.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../router/routes.dart';
+import '../../widgets/nav_bar.dart';
+import '../../widgets/section_title.dart';
+import '../home/views/footer_view.dart';
 import 'components/animated_stick.dart';
+import 'components/list_page.dart';
 
 class ExperiencePage extends StatefulWidget {
   const ExperiencePage({super.key});
@@ -39,19 +42,6 @@ class _ExperiencePageState extends State<ExperiencePage>
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Positioned(
-                    right: 120,
-                    top: 30,
-                    child: Image.asset(
-                      "assets/images/working_doodle.png",
-                      width: 300,
-                      height: 400,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondary
-                          .withOpacity(0.5),
-                    ),
-                  ),
                   Container(
                     height: 120,
                     child: SectionTitle(
@@ -62,21 +52,63 @@ class _ExperiencePageState extends State<ExperiencePage>
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: AnimatedSlideBox(
-                      controller: _stickController,
-                      height: MediaQuery.of(context).size.height * .4,
-                      isVertical: true,
-                      coverColor: Theme.of(context).colorScheme.primary,
-                      boxColor: Colors.white,
-                      visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
-                      width: 6,
+                    child: Entry.opacity(
+                      opacity: 0,
+                      duration: Duration(milliseconds: 1500),
+                      child: AnimatedSlideBox(
+                        controller: _stickController,
+                        height: MediaQuery.of(context).size.height * .4,
+                        isVertical: true,
+                        coverColor: Theme.of(context).colorScheme.primary,
+                        boxColor: Colors.white,
+                        visibleBoxCurve: Curves.fastLinearToSlowEaseIn,
+                        width: 6,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          Container(),
+          SizedBox(height: 70),
+          JobsListView(),
+          SizedBox(height: 130),
+          Center(
+            child: Container(
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.secondary),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.all(5),
+              child: ElevatedButton(
+                onPressed: () => context.go(Routes.works),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith(
+                    (states) => Theme.of(context).colorScheme.secondary,
+                  ),
+                  shape: MaterialStateProperty.resolveWith((states) =>
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                  padding: MaterialStateProperty.resolveWith((states) =>
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Checkout My Projects",
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    SizedBox(width: 8),
+                    Icon(Icons.arrow_forward, color: Colors.white)
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 130),
+          FooterView(),
         ],
       ),
     );

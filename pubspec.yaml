@@ -27,6 +27,7 @@ dependencies:
   animations: ^2.0.11
   fluid_dialog: ^2.0.0
   flutter_animated_dialog: ^2.0.1
+  layout: ^1.0.5
 
 dev_dependencies:
   flutter_test:

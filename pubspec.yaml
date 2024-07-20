@@ -28,6 +28,8 @@ dependencies:
   fluid_dialog: ^2.0.0
   flutter_animated_dialog: ^2.0.1
   layout: ^1.0.5
+  marqueer: ^1.4.5
+  flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +44,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/project-images/
     - assets/svg/
 
   fonts:

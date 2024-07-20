@@ -35,8 +35,8 @@ class _OverlappingTextState extends State<OverlappingText>
           yOffset: -widget.offset.dy,
           opacity: 0,
           scale: 1,
-          delay: Constants.mediumDelay,
-          duration: Constants.smallDelay,
+          delay: Duration(seconds: 4),
+          duration: Constants.mediumDelay,
           child: Transform.translate(
             offset: widget.offset,
             child: AutoSizeText(

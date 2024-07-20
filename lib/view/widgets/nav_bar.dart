@@ -63,7 +63,7 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                             },
                           ),
                           AnimatedNaveItem(
-                            title: "Projects",
+                            title: "My Projects",
                             onTap: () {
                               context.go(Routes.works);
                             },

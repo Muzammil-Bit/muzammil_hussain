@@ -30,6 +30,12 @@ class _ExperiencePageState extends State<ExperiencePage>
   }
 
   @override
+  void dispose() {
+    _stickController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
@@ -74,42 +80,55 @@ class _ExperiencePageState extends State<ExperiencePage>
           JobsListView(),
           SizedBox(height: 130),
           Center(
-            child: Container(
-              decoration: BoxDecoration(
-                border:
-                    Border.all(color: Theme.of(context).colorScheme.secondary),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.all(5),
-              child: ElevatedButton(
-                onPressed: () => context.go(Routes.works),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith(
-                    (states) => Theme.of(context).colorScheme.secondary,
-                  ),
-                  shape: MaterialStateProperty.resolveWith((states) =>
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                  padding: MaterialStateProperty.resolveWith((states) =>
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Checkout My Projects",
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                    SizedBox(width: 8),
-                    Icon(Icons.arrow_forward, color: Colors.white)
-                  ],
-                ),
-              ),
+            child: AppButton(
+              onTap: () => context.go(Routes.works),
             ),
           ),
           SizedBox(height: 130),
           FooterView(),
         ],
+      ),
+    );
+  }
+}
+
+class AppButton extends StatelessWidget {
+  const AppButton({
+    super.key,
+    required this.onTap,
+  });
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).colorScheme.secondary),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: EdgeInsets.all(5),
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) => Theme.of(context).colorScheme.secondary,
+          ),
+          shape: MaterialStateProperty.resolveWith((states) =>
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+          padding: MaterialStateProperty.resolveWith(
+              (states) => EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Checkout My Projects",
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+            SizedBox(width: 8),
+            Icon(Icons.arrow_forward, color: Colors.white)
+          ],
+        ),
       ),
     );
   }

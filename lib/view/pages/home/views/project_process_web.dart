@@ -77,7 +77,7 @@ class _ProcessCard extends StatelessWidget {
         ? [
             Entry.opacity(
               duration: Constants.smallDelay,
-              delay: Constants.smallDelay,
+              // delay: Constants.smallDelay,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

@@ -82,6 +82,17 @@ class _ExperiencePageState extends State<ExperiencePage>
           Center(
             child: AppButton(
               onTap: () => context.go(Routes.works),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Checkout My Projects",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                  SizedBox(width: 8),
+                  Icon(Icons.arrow_forward, color: Colors.white)
+                ],
+              ),
             ),
           ),
           SizedBox(height: 130),
@@ -96,8 +107,10 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     required this.onTap,
+    required this.child,
   });
   final void Function() onTap;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -118,17 +131,7 @@ class AppButton extends StatelessWidget {
           padding: MaterialStateProperty.resolveWith(
               (states) => EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "Checkout My Projects",
-              style: Theme.of(context).textTheme.labelSmall,
-            ),
-            SizedBox(width: 8),
-            Icon(Icons.arrow_forward, color: Colors.white)
-          ],
-        ),
+        child: child,
       ),
     );
   }

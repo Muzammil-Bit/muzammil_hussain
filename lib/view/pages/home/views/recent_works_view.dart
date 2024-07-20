@@ -1,6 +1,9 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/view/pages/experience/experience_page.dart';
+import 'package:muzammil_hussain/view/router/routes.dart';
 import '../../../../config/assets.dart';
 import '../../../../extensions/context_ext.dart';
 import '../../../../models/recent_works.dart';
@@ -41,6 +44,21 @@ class RecentWorksView extends StatelessWidget {
                 work: RecentWork.works[index],
               );
             },
+          ),
+        ),
+        SizedBox(height: 150),
+        AppButton(
+          onTap: () => context.go(Routes.works),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "All Projects",
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+              SizedBox(width: 8),
+              Icon(Icons.arrow_forward, color: Colors.white)
+            ],
           ),
         ),
       ],

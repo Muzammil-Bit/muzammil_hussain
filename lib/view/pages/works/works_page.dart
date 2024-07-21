@@ -1,8 +1,8 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../../animations/animated_dialog/animated_dialog.dart';
 import '../../widgets/nav_bar.dart';
 import '../../widgets/section_title.dart';
 import '../experience/components/animated_stick.dart';

@@ -1,16 +1,17 @@
-import 'package:entry/entry.dart';
+import 'package:delightful_toast/delight_toast.dart';
+import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/view/widgets/app_text_field.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_mailer/flutter_mailer.dart';
 
 import '../../../config/constants.dart';
 import '../../../extensions/context_ext.dart';
+import '../../widgets/app_text_field.dart';
 import '../../widgets/nav_bar.dart';
 import '../../widgets/section_title.dart';
 import '../home/views/footer_view.dart';
 
 class ContactPage extends StatelessWidget {
-  const ContactPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,6 +94,11 @@ class ContactPage extends StatelessWidget {
           )),
           SizedBox(height: 50),
           ListTile(
+            onTap: () async {
+              await Clipboard.setData(
+                  ClipboardData(text: Constants.phoneNumber));
+              context.showToast("Phone number copied to your clipboard!");
+            },
             leading: CircleAvatar(
               child: Icon(Icons.phone, color: Colors.white),
               radius: 25,
@@ -118,6 +124,10 @@ class ContactPage extends StatelessWidget {
           ),
           Divider(height: 40),
           ListTile(
+            onTap: () async {
+              await Clipboard.setData(ClipboardData(text: Constants.email));
+              context.showToast("Email copied to your clipboard!");
+            },
             minLeadingWidth: 60,
             leading: CircleAvatar(
               child: Icon(Icons.email, color: Colors.white),
@@ -143,6 +153,10 @@ class ContactPage extends StatelessWidget {
           ),
           Divider(height: 40),
           ListTile(
+            onTap: () async {
+              await Clipboard.setData(ClipboardData(text: Constants.email));
+              context.showToast("Address copied to your clipboard!");
+            },
             minLeadingWidth: 60,
             leading: CircleAvatar(
               child: Icon(Icons.email, color: Colors.white),
@@ -171,6 +185,10 @@ class ContactPage extends StatelessWidget {
     );
   }
 
+  final TextEditingController _emailEditingController = TextEditingController();
+  final TextEditingController _nameEditingController = TextEditingController();
+  final TextEditingController _commentEditingController =
+      TextEditingController();
   Widget _contactForm(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -178,21 +196,50 @@ class ContactPage extends StatelessWidget {
         children: [
           AppTextField(
             label: "What's your Full name?",
+            controller: _nameEditingController,
           ),
           SizedBox(height: 25),
           AppTextField(
             label: "What's your email address?",
+            controller: _emailEditingController,
           ),
           SizedBox(height: 25),
           AppTextField(
             label: "What's on your mind?",
             maxLines: 20,
+            controller: _commentEditingController,
           ),
           SizedBox(height: 30),
           Container(
             width: double.maxFinite,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                if (_nameEditingController.text.trim().isEmpty) {
+                  context.showToast("Please enter your name.");
+                  return;
+                }
+                if (_emailEditingController.text.trim().isEmpty) {
+                  context.showToast("Please enter your email address.");
+                  return;
+                }
+                if (_commentEditingController.text.trim().isEmpty) {
+                  context
+                      .showToast("Please enter something about what you need.");
+                  return;
+                }
+
+                final MailOptions mailOptions = MailOptions(
+                  body: _commentEditingController.text.trim(),
+                  subject:
+                      '${_nameEditingController.text.trim()} from portfolio website',
+                  recipients: [Constants.email],
+                  isHTML: true,
+                );
+
+                await FlutterMailer.send(mailOptions);
+                context.showToast(
+                    "Thank you for contacting me. For faster response please hit me up on Whatsapp!");
+              },
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.resolveWith(
                     (states) => Size(double.maxFinite, 60)),

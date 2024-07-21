@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/view/router/routes.dart';
 
 import '../../../../extensions/context_ext.dart';
 import '../../../widgets/section_title.dart';
+import '../../experience/experience_page.dart';
 
 class ExperienceView extends StatelessWidget {
   const ExperienceView({super.key});
@@ -49,7 +52,22 @@ class ExperienceView extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
+        SizedBox(height: 180),
+        AppButton(
+          onTap: () => context.go(Routes.works),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Past Experience",
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+              SizedBox(width: 8),
+              Icon(Icons.arrow_forward, color: Colors.white)
+            ],
+          ),
+        ),
       ],
     );
   }

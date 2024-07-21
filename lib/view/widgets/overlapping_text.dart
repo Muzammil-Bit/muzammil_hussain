@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/config/constants.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
+import '../../config/constants.dart';
+import '../../extensions/context_ext.dart';
 
 class OverlappingText extends StatefulWidget {
   const OverlappingText({
@@ -35,8 +35,8 @@ class _OverlappingTextState extends State<OverlappingText>
           yOffset: -widget.offset.dy,
           opacity: 0,
           scale: 1,
-          delay: Constants.mediumDelay,
-          duration: Constants.smallDelay,
+          delay: Duration(seconds: 4),
+          duration: Constants.mediumDelay,
           child: Transform.translate(
             offset: widget.offset,
             child: AutoSizeText(

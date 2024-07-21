@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';
 import '../../extensions/color_ext.dart';
-import '../../extensions/context_ext.dart';
 import '../../providers/app_state_provider.dart';
-import '../pages/about/about_page.dart';
-import '../pages/contact/contact_page.dart';
-import '../pages/home/home_page.dart';
-import '../pages/works/works_page.dart';
+import '../router/routes.dart';
 import 'animated_nav_drawer_button.dart';
 
 class AnimatedNavWrapper extends StatefulWidget {
@@ -60,18 +57,24 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AnimatedNaveItem(
-                            title: "Works",
+                            title: "Experience",
                             onTap: () {
-                              context.push(WorksPage());
+                              context.go(Routes.experience);
                             },
                           ),
                           AnimatedNaveItem(
-                            title: "About",
-                            onTap: () => context.push(AboutPage()),
+                            title: "My Projects",
+                            onTap: () {
+                              context.go(Routes.works);
+                            },
                           ),
                           AnimatedNaveItem(
                             title: "Contact",
-                            onTap: () => context.push(ContactPage()),
+                            onTap: () => context.go(Routes.contact),
+                          ),
+                          AnimatedNaveItem(
+                            title: "About",
+                            onTap: () => context.go(Routes.about),
                           ),
                         ],
                       ),
@@ -89,7 +92,7 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                         overlayColor: MaterialStateProperty.resolveWith(
                             (states) => Colors.transparent),
                         onTap: () {
-                          context.pushReplacement(HomePage());
+                          context.go(Routes.home);
                         },
                         child: Text.rich(
                           TextSpan(
@@ -141,7 +144,7 @@ class _AnimatedNaveItemState extends State<AnimatedNaveItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -156,13 +159,17 @@ class _AnimatedNaveItemState extends State<AnimatedNaveItem> {
               bottom: 0,
               left: _isHovered
                   ? 0
-                  : -MediaQuery.of(context).size.width * 0.3 - 30,
+                  : -MediaQuery.of(context).size.width * 0.4 - 30,
               child: Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: 0.8,
-                  decoration:
-                      BoxDecoration(color: Colors.white.withOpacity(0.5)),
+                child: Transform.translate(
+                  offset: Offset(0, -5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: 0.8,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                  ),
                 ),
               ),
             ),

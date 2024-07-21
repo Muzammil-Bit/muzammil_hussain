@@ -5,9 +5,11 @@ class AppTextField extends StatelessWidget {
     super.key,
     required this.label,
     this.maxLines,
+    this.controller,
   });
   final String label;
   final int? maxLines;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class AppTextField extends StatelessWidget {
       ),
     );
     return TextField(
+      controller: controller,
       maxLines: maxLines,
       cursorColor: Colors.white,
       cursorOpacityAnimates: true,

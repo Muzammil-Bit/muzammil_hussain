@@ -48,11 +48,11 @@
     content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"> -->
 
   <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="manifest" href="/icons/site.webmanifest">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 
@@ -124,27 +124,27 @@
 
 <body>
   <div class="loading" id="loader">
-    <lord-icon id="icon" src="https://lottie.host/8a5c6d0a-4edc-4ba1-a67d-d69be05bbfd2/GQAmdAZimj.json" trigger="loop"
+    <lord-icon id="icon" src="https://lottie.host/ead77b0a-5e2d-4755-a6e8-2391f28d4c42/h89yMlqFDv.json" trigger="loop"
       colors="primary:#000000,secondary:#ffc738,tertiary:#f24c00" style="width:200px;height:200px">
     </lord-icon>
-    <p class="loading-label"></p>
+    <!-- <p class="loading-label"></p> -->
   </div>
   <script>
-    const texts = [
-      "Hold on, let me grab my coffee...",
-      "Drinking it now...",
-      "Trust me, I will get back to you...",
-      "Its a big cup...",
-      "Trust me, I will get back to you...",
-    ];
-    const element = document.querySelector('p.loading-label');
-    let i = 0;
-    const listener = e => {
-      i = i < texts.length - 1 ? i + 1 : 0;
-      element.innerHTML = texts[i];
-    };
-    element.innerHTML = texts[0];
-    element.addEventListener('animationiteration', listener, false);
+  //  const texts = [
+   //   "Hold on, let me grab my coffee...",
+   //   "Drinking it now...",
+   //   "Trust me, I will get back to you...",
+    //  "Its a big cup...",
+   //   "Trust me, I will get back to you...",
+   // ];
+   // const element = document.querySelector('p.loading-label');
+   // let i = 0;
+   // const listener = e => {
+     // i = i < texts.length - 1 ? i + 1 : 0;
+    //  element.innerHTML = texts[i];
+   // };
+   // element.innerHTML = texts[0];
+  //  element.addEventListener('animationiteration', listener, false);
 
     window.addEventListener('load', function (ev) {
       // Download main.dart.js

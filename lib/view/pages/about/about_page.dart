@@ -1,12 +1,11 @@
 import 'package:entry/entry.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
-import 'package:muzammil_hussain/view/pages/home/views/footer_view.dart';
-import 'package:muzammil_hussain/view/widgets/animated_cursor.dart';
-import 'package:muzammil_hussain/view/widgets/nav_bar.dart';
-import 'package:muzammil_hussain/view/widgets/section_title.dart';
+
+import '../../../extensions/context_ext.dart';
+import '../../widgets/animated_cursor.dart';
+import '../../widgets/nav_bar.dart';
+import '../../widgets/section_title.dart';
+import '../home/views/footer_view.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});

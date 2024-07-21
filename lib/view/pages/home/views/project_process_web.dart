@@ -1,13 +1,11 @@
-import 'dart:io';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/config/constants.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
 
-import 'package:muzammil_hussain/view/widgets/overlapping_text.dart';
-import 'package:muzammil_hussain/view/widgets/section_title.dart';
+import '../../../../config/constants.dart';
+import '../../../../extensions/context_ext.dart';
+import '../../../widgets/overlapping_text.dart';
+import '../../../widgets/section_title.dart';
 
 class ProjectProcessView extends StatelessWidget {
   const ProjectProcessView({
@@ -79,7 +77,7 @@ class _ProcessCard extends StatelessWidget {
         ? [
             Entry.opacity(
               duration: Constants.smallDelay,
-              delay: Constants.smallDelay,
+              // delay: Constants.smallDelay,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

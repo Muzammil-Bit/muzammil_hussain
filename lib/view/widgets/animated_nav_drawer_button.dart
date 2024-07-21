@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/providers/app_state_provider.dart';
+import '../../providers/app_state_provider.dart';
 import 'package:provider/provider.dart';
 
 class AnimatedNavDrawerButton extends StatelessWidget {

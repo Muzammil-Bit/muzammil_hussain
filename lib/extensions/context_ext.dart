@@ -1,16 +1,17 @@
 import 'dart:math';
 
+import 'package:delightful_toast/delight_toast.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
-  push(Widget widget) {
-    Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
-  }
+  // push(Widget widget) {
+  //   Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
+  // }
 
-  pushReplacement(Widget widget) {
-    Navigator.of(this)
-        .pushReplacement(MaterialPageRoute(builder: (_) => widget));
-  }
+  // pushReplacement(Widget widget) {
+  //   Navigator.of(this)
+  //       .pushReplacement(MaterialPageRoute(builder: (_) => widget));
+  // }
 
   bool get isTablet =>
       MediaQuery.of(this).size.width <= 1025 &&
@@ -33,5 +34,36 @@ extension ContextExt on BuildContext {
     final width = MediaQuery.of(this).size.width;
     double val = (width / 1400) * maxTextScaleFactor;
     return max(1, min(val, maxTextScaleFactor));
+  }
+
+  void showToast(String message) {
+    DelightToastBar(
+      snackbarDuration: Duration(seconds: 2),
+      autoDismiss: true,
+      builder: (context) => Center(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context).colorScheme.secondary,
+                blurRadius: 5,
+                spreadRadius: 1,
+              )
+            ],
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          child: Text(
+            message,
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    ).show(this);
   }
 }

@@ -71,7 +71,7 @@ class ThemeConfig {
         ),
       ).apply(
         bodyColor: AppColors.white,
-        displayColor: AppColors.white,
+        displayColor: AppColors.white.withOpacity(0.9),
         decorationColor: AppColors.white,
       ),
       colorScheme: const ColorScheme(

@@ -1,8 +1,12 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muzammil_hussain/config/assets.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
-import 'package:muzammil_hussain/models/recent_works.dart';
+import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/view/pages/experience/experience_page.dart';
+import 'package:muzammil_hussain/view/router/routes.dart';
+import '../../../../config/assets.dart';
+import '../../../../extensions/context_ext.dart';
+import '../../../../models/recent_works.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../widgets/section_title.dart';
@@ -22,11 +26,11 @@ class RecentWorksView extends StatelessWidget {
         ),
         SizedBox(height: 180),
         ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 1024),
+          constraints: BoxConstraints(maxWidth: 1200),
           child: GridView.builder(
             itemCount: RecentWork.works.length,
             padding:
-                EdgeInsets.symmetric(horizontal: context.isMobile ? 20 : 80),
+                EdgeInsets.symmetric(horizontal: context.isMobile ? 50 : 80),
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -40,6 +44,21 @@ class RecentWorksView extends StatelessWidget {
                 work: RecentWork.works[index],
               );
             },
+          ),
+        ),
+        SizedBox(height: 150),
+        AppButton(
+          onTap: () => context.go(Routes.works),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "CHECKOUT MY PROJECTS",
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
+              SizedBox(width: 8),
+              Icon(Icons.arrow_forward, color: Colors.white)
+            ],
           ),
         ),
       ],
@@ -66,135 +85,138 @@ class _WorkCardState extends State<WorkCard> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        alignment: context.isMobile
-            ? Alignment.center
-            : widget.isAtTop
-                ? Alignment.topCenter
-                : Alignment.bottomCenter,
-        child: Container(
-          constraints: BoxConstraints(
-            maxHeight: context.isMobile
-                ? constraints.maxHeight
-                : constraints.maxHeight * 0.8,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            border: Border(
-              bottom: BorderSide(
-                color: Theme.of(context).colorScheme.secondary,
-                width: 3,
-              ),
-              left: BorderSide(
-                color: Theme.of(context).colorScheme.secondary,
-                width: 3,
-              ),
-              right: BorderSide(
-                color: Theme.of(context).colorScheme.secondary,
-                width: 3,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          alignment: context.isMobile
+              ? Alignment.center
+              : widget.isAtTop
+                  ? Alignment.topCenter
+                  : Alignment.bottomCenter,
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: context.isMobile
+                  ? constraints.maxHeight
+                  : constraints.maxHeight * 0.8,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: Border(
+                bottom: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                  width: 3,
+                ),
+                left: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                  width: 3,
+                ),
+                right: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                  width: 3,
+                ),
               ),
             ),
-          ),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                margin:
-                    EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 40),
-                child: MouseRegion(
-                  onEnter: (v) => setState(() => isHovering = true),
-                  onExit: (v) => setState(() => isHovering = false),
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            widget.work.imagePath,
-                            fit: BoxFit.cover,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  margin:
+                      EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 40),
+                  child: MouseRegion(
+                    onEnter: (v) => setState(() => isHovering = true),
+                    onExit: (v) => setState(() => isHovering = false),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              widget.work.imagePath,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned.fill(
-                        child: AnimatedScale(
-                          scale: isHovering ? 1 : 1.2,
-                          duration: Duration(milliseconds: 200),
-                          child: AnimatedOpacity(
+                        Positioned.fill(
+                          child: AnimatedScale(
+                            scale: isHovering ? 1 : 1.2,
                             duration: Duration(milliseconds: 200),
-                            opacity: isHovering ? 1 : 0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.secondary,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              alignment: Alignment.center,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  ExperienceCardButton(
-                                    child: SvgPicture.asset(
-                                      Assets.playstore,
-                                      width: 16,
-                                      height: 16,
+                            child: AnimatedOpacity(
+                              duration: Duration(milliseconds: 200),
+                              opacity: isHovering ? 1 : 0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    ExperienceCardButton(
+                                      child: SvgPicture.asset(
+                                        Assets.playstore,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      url: widget.work.playStoreUrl,
                                     ),
-                                    url: widget.work.playStoreUrl,
-                                  ),
-                                  SizedBox(width: 10),
-                                  ExperienceCardButton(
-                                    child: SvgPicture.asset(
-                                      Assets.apple,
-                                      width: 16,
-                                      height: 16,
+                                    SizedBox(width: 10),
+                                    ExperienceCardButton(
+                                      child: SvgPicture.asset(
+                                        Assets.apple,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      url: widget.work.appStoreUrl,
                                     ),
-                                    url: widget.work.appStoreUrl,
-                                  ),
-                                  SizedBox(width: 10),
-                                  ExperienceCardButton(
-                                    child: SvgPicture.asset(
-                                      Assets.github,
-                                      width: 16,
-                                      height: 16,
+                                    SizedBox(width: 10),
+                                    ExperienceCardButton(
+                                      child: SvgPicture.asset(
+                                        Assets.github,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      url: widget.work.gitHubUrl,
                                     ),
-                                    url: widget.work.gitHubUrl,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                  // clipBehavior: Clip.antiAlias,
+                ),
+                Positioned(
+                  left: 30,
+                  top: -15,
+                  right: 30,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.work.title,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),
-                ),
-                // clipBehavior: Clip.antiAlias,
-              ),
-              Positioned(
-                left: 30,
-                top: -15,
-                right: 30,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        widget.work.title,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
 

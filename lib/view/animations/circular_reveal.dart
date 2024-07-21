@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/view/animations/clipper.dart';
+import 'clipper.dart';
 
 class CircularRevealAnimation extends StatelessWidget {
   final Alignment? centerAlignment;

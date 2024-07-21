@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -137,15 +138,15 @@ class _HeroViewState extends State<HeroView> {
                                   .textTheme
                                   .headlineLarge
                                   ?.copyWith(
-
-                                      // fontSize: _heroTitleFontSize(context),
-                                      ),
+                                    height: 0.4,
+                                    // fontSize: _heroTitleFontSize(context),
+                                  ),
                               maxLines: 1,
                               maxFontSize: _heroTitleFontSize(context),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 100),
                         Entry.opacity(
                           delay: Constants.smallDelay,
                           duration: Constants.smallDelay,

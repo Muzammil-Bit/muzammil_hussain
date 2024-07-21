@@ -1,6 +1,6 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
-import 'package:muzammil_hussain/extensions/context_ext.dart';
+import '../../extensions/context_ext.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/constants.dart';
@@ -20,6 +20,7 @@ class ThemeSwitcher extends StatelessWidget {
 
 class _ThemeSwitcherWeb extends StatelessWidget {
   const _ThemeSwitcherWeb();
+
   Widget _buildSpacer() {
     return Transform.scale(
       scale: 2,
@@ -37,34 +38,45 @@ class _ThemeSwitcherWeb extends StatelessWidget {
       left: 20,
       bottom: 0,
       top: 0,
-      child: Consumer<AppStateProvider>(builder: (context, provider, child) {
-        return Entry.all(
-          delay: Constants.smallDelay,
-          xOffset: -20,
-          yOffset: 0,
-          scale: 1,
-          duration: Constants.smallDelay,
-          child: Container(
-            width: 40,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < ThemeConfig.allThemes().length; i++) ...[
-                  ThemeToggleButton(
-                    color: ThemeConfig.allThemes()[i].colorScheme.secondary,
-                    index: i,
-                    isActive: i == provider.currentIndex,
-                    onTap: () {
-                      context.read<AppStateProvider>().updateThemeIndex(i);
-                    },
+      child: Consumer<AppStateProvider>(
+        builder: (context, provider, child) {
+          return provider.isNavBarOpen
+              ? SizedBox.shrink()
+              : Entry.all(
+                  delay: Constants.smallDelay,
+                  xOffset: -20,
+                  yOffset: 0,
+                  scale: 1,
+                  duration: Constants.smallDelay,
+                  child: Container(
+                    width: 40,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for (int i = 0;
+                            i < ThemeConfig.allThemes().length;
+                            i++) ...[
+                          ThemeToggleButton(
+                            color: ThemeConfig.allThemes()[i]
+                                .colorScheme
+                                .secondary,
+                            index: i,
+                            isActive: i == provider.currentIndex,
+                            onTap: () {
+                              context
+                                  .read<AppStateProvider>()
+                                  .updateThemeIndex(i);
+                            },
+                          ),
+                          if (i < ThemeConfig.allThemes().length - 1)
+                            _buildSpacer(),
+                        ]
+                      ],
+                    ),
                   ),
-                  if (i < ThemeConfig.allThemes().length - 1) _buildSpacer(),
-                ]
-              ],
-            ),
-          ),
-        );
-      }),
+                );
+        },
+      ),
     );
   }
 }
@@ -79,69 +91,6 @@ class _ThemSwitcherMobile extends StatefulWidget {
 class _ThemSwitcherMobileState extends State<_ThemSwitcherMobile> {
   bool _isOpened = false;
 
-  @override
-  Widget build(BuildContext context) {
-    final provider = context.read<AppStateProvider>();
-    return AnimatedPositioned(
-        left: 20,
-        bottom: _isOpened ? 30 : 10,
-        duration: Duration(milliseconds: 300),
-        child: !_isOpened
-            ? ThemeToggleButton(
-                color: ThemeConfig.allThemes()[0].colorScheme.secondary,
-                index: provider.currentIndex,
-                isActive: true,
-                onTap: () {
-                  setState(() {
-                    _isOpened = !_isOpened;
-                  });
-                },
-              )
-            : Entry.offset(
-                yOffset: 300,
-                child: Container(
-                  width: 40,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // if (!_isOpened)
-                      // ThemeToggleButton(
-                      //   color: ThemeConfig.allThemes()[0].colorScheme.secondary,
-                      //   index: provider.currentIndex,
-                      //   isActive: true,
-                      //   onTap: () {
-                      //     setState(() {
-                      //       _isOpened = !_isOpened;
-                      //     });
-                      //   },
-                      // )
-                      // else
-                      for (int i = 0;
-                          i < ThemeConfig.allThemes().length;
-                          i++) ...[
-                        ThemeToggleButton(
-                          color:
-                              ThemeConfig.allThemes()[i].colorScheme.secondary,
-                          index: i,
-                          isActive: i == provider.currentIndex,
-                          onTap: () {
-                            context
-                                .read<AppStateProvider>()
-                                .updateThemeIndex(i);
-                            setState(() {
-                              _isOpened = !_isOpened;
-                            });
-                          },
-                        ),
-                        if (i < ThemeConfig.allThemes().length - 1)
-                          _buildSpacer(),
-                      ]
-                    ],
-                  ),
-                ),
-              ));
-  }
-
   Widget _buildSpacer() {
     return Transform.scale(
       scale: 2,
@@ -150,6 +99,55 @@ class _ThemSwitcherMobileState extends State<_ThemSwitcherMobile> {
         width: 1,
         color: Colors.white.withOpacity(0.1),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.read<AppStateProvider>();
+    return AnimatedPositioned(
+      left: 20,
+      bottom: _isOpened ? 30 : 10,
+      duration: Duration(milliseconds: 300),
+      child: !_isOpened
+          ? ThemeToggleButton(
+              color: ThemeConfig.allThemes()[0].colorScheme.secondary,
+              index: provider.currentIndex,
+              isActive: true,
+              onTap: () {
+                setState(() {
+                  _isOpened = !_isOpened;
+                });
+              },
+            )
+          : Entry.offset(
+              yOffset: 300,
+              child: Container(
+                width: 40,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int i = 0;
+                        i < ThemeConfig.allThemes().length;
+                        i++) ...[
+                      ThemeToggleButton(
+                        color: ThemeConfig.allThemes()[i].colorScheme.secondary,
+                        index: i,
+                        isActive: i == provider.currentIndex,
+                        onTap: () {
+                          context.read<AppStateProvider>().updateThemeIndex(i);
+                          setState(() {
+                            _isOpened = !_isOpened;
+                          });
+                        },
+                      ),
+                      if (i < ThemeConfig.allThemes().length - 1)
+                        _buildSpacer(),
+                    ]
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }
@@ -162,9 +160,10 @@ class ThemeToggleButton extends StatefulWidget {
     required this.index,
     required this.onTap,
   }) : super(key: key);
+
   final Color color;
-  final bool isActive;
   final int index;
+  final bool isActive;
   final void Function() onTap;
 
   @override
@@ -172,8 +171,23 @@ class ThemeToggleButton extends StatefulWidget {
 }
 
 class _ThemeToggleButtonState extends State<ThemeToggleButton> {
-  bool isHovering = false;
   final Duration animationDuration = Duration(milliseconds: 500);
+  bool isHovering = false;
+
+  double _getScale() {
+    if (isHovering && widget.isActive) {
+      return 3;
+    }
+
+    if (widget.isActive) {
+      return 1.4;
+    }
+
+    if (isHovering) {
+      return 2;
+    }
+    return 1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,11 +213,7 @@ class _ThemeToggleButtonState extends State<ThemeToggleButton> {
           alignment: Alignment.center,
           child: AnimatedPadding(
             curve: Curves.ease,
-            padding:
-                // !widget.isActive || isHovering
-                //     ? EdgeInsets.zero
-                //     :
-                EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             duration: animationDuration,
             child: AnimatedScale(
               scale: isHovering ? 1 : 1.2,
@@ -233,35 +243,5 @@ class _ThemeToggleButtonState extends State<ThemeToggleButton> {
         ),
       ),
     );
-  }
-
-  double _getConstraints() {
-    if (isHovering && widget.isActive) {
-      return 30;
-    }
-
-    if (widget.isActive) {
-      return 15;
-    }
-
-    if (isHovering) {
-      return 20;
-    }
-    return 10;
-  }
-
-  double _getScale() {
-    if (isHovering && widget.isActive) {
-      return 3;
-    }
-
-    if (widget.isActive) {
-      return 1.4;
-    }
-
-    if (isHovering) {
-      return 2;
-    }
-    return 1;
   }
 }

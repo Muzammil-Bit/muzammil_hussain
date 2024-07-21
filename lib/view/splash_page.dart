@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../providers/app_state_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'animations/circular_reveal.dart';
 import 'pages/home/home_page.dart';
@@ -25,7 +27,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _gradientAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 3),
       lowerBound: lowerBoumd,
       upperBound: upperBoumd,
     );
@@ -39,7 +41,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _textAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1200),
       lowerBound: lowerBoumd,
       upperBound: upperBoumd,
     );
@@ -54,8 +56,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     _textAnimationController.forward();
     _gradientAnimationController.forward();
-    Future.delayed(Duration(seconds: 5), () {
-      Navigator.of(context).push(CustomPageRoute(HomePage()));
+    Future.delayed(Duration(seconds: 4), () {
+      // Navigator.of(context).push(CustomPageRoute(HomePage()));
+      context.read<AppStateProvider>().setNavAnimationStatus(true);
     });
   }
 
@@ -91,11 +94,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                                 ?.copyWith(fontSize: 80, letterSpacing: 2),
                             children: [
                               TextSpan(
-                                  text: ".",
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary)),
+                                text: ".",
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                              ),
                             ],
                           ),
                         ),

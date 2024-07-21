@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muzammil_hussain/config/constants.dart';
+import '../../../../config/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../config/assets.dart';

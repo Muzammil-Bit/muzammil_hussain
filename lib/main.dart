@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:muzammil_hussain/view/widgets/animated_cursor.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/app_state_provider.dart';
@@ -22,11 +23,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateProvider>(builder: (context, provider, child) {
-      return MaterialApp.router(
-        title: 'Muzammil Hussain',
-        debugShowCheckedModeBanner: false,
-        theme: provider.currentTheme,
-        routerConfig: router,
+      return Directionality(
+        textDirection: TextDirection.ltr,
+        child: AnimatedCursor(
+          child: MaterialApp.router(
+            title: 'Muzammil Hussain',
+            debugShowCheckedModeBanner: false,
+            theme: provider.currentTheme,
+            routerConfig: router,
+          ),
+        ),
       );
     });
   }

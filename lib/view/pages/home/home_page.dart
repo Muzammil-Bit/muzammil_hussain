@@ -31,28 +31,25 @@ class _HomePageState extends State<HomePage> {
               FadeTransition(opacity: animation, child: child),
           child: !value.isSplashAnimationDone
               ? SplashPage(key: ValueKey(0))
-              : AnimatedCursor(
-                  key: ValueKey(1),
-                  child: Scaffold(
-                    body: Stack(
-                      children: [
-                        ListView(
-                          controller: _scrollController,
-                          physics: value.isNavBarOpen
-                              ? NeverScrollableScrollPhysics()
-                              : null,
-                          children: [
-                            HeroView(scrollController: _scrollController),
-                            RecentWorksView(),
-                            ExperienceView(),
-                            ProjectProcessView(),
-                            ContactMeView(),
-                            FooterView(),
-                          ],
-                        ),
-                        ThemeSwitcher(),
-                      ],
-                    ),
+              : Scaffold(
+                  body: Stack(
+                    children: [
+                      ListView(
+                        controller: _scrollController,
+                        physics: value.isNavBarOpen
+                            ? NeverScrollableScrollPhysics()
+                            : null,
+                        children: [
+                          HeroView(scrollController: _scrollController),
+                          ExperienceView(),
+                          RecentWorksView(),
+                          ProjectProcessView(),
+                          ContactMeView(),
+                          FooterView(),
+                        ],
+                      ),
+                      ThemeSwitcher(),
+                    ],
                   ),
                 ),
         );

@@ -53,7 +53,7 @@ class RecentWorksView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "All Projects",
+                "CHECKOUT MY PROJECTS",
                 style: Theme.of(context).textTheme.labelSmall,
               ),
               SizedBox(width: 8),

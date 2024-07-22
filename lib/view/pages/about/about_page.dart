@@ -148,7 +148,7 @@ class AboutPage extends StatelessWidget {
         ),
         SizedBox(height: 10),
         Text(
-          "Osama Daimallah is a self-taught developer based in Morocco, specializing in Full-stack development and UI design. As a dedicated freelancer, he continually seeks new opportunities to enhance his skills.",
+          "Muzammil Hussain is a mobile application developer based in Pakistan, specializing in Hybrid Mobile Apps Development using Flutter. As a dedicated freelancer, he continually seeks new opportunities to enhance his skills.",
           style: Theme.of(context)
               .textTheme
               .bodyMedium
@@ -157,7 +157,7 @@ class AboutPage extends StatelessWidget {
         ),
         SizedBox(height: 20),
         Text(
-          "Acknowledging that he's on a journey of continuous improvement, Osama understands that his earlier projects may not fully reflect his current expertise. Nevertheless, he values the lessons learned from these experiences and views them as opportunities for growth.",
+          "Acknowledging that he's on a journey of continuous improvement, Muzammil understands that his earlier projects may not fully reflect his current expertise. Nevertheless, he values the lessons learned from these experiences and views them as opportunities for growth.",
           style: Theme.of(context)
               .textTheme
               .bodyMedium
@@ -166,7 +166,7 @@ class AboutPage extends StatelessWidget {
         ),
         SizedBox(height: 20),
         Text(
-          "In essence, Osama Daimallah is a passionate developer committed to excellence. He understands that each project is a chance to become better, welcoming feedback and constructive criticism as stepping stones to further development.",
+          "In essence, Muzammil Hussain is a passionate developer committed to excellence. He understands that each project is a chance to become better, welcoming feedback and constructive criticism as stepping stones to further development.",
           style: Theme.of(context)
               .textTheme
               .bodyMedium

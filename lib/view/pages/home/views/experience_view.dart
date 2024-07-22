@@ -55,7 +55,7 @@ class ExperienceView extends StatelessWidget {
         ),
         SizedBox(height: 180),
         AppButton(
-          onTap: () => context.go(Routes.works),
+          onTap: () => context.go(Routes.experience),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../../../models/project.dart';
 import '../../../router/routes.dart';
-import '../works_page.dart';
 
 class PreviewProjectDialog extends StatelessWidget {
   const PreviewProjectDialog({super.key, required this.item});
@@ -13,14 +14,17 @@ class PreviewProjectDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(20),
         child: Container(
-          constraints: BoxConstraints(maxWidth: 1100, maxHeight: 1024),
+          margin: EdgeInsets.symmetric(horizontal: 30),
+          constraints: BoxConstraints(maxWidth: 1100, maxHeight: 800),
           padding: EdgeInsets.symmetric(horizontal: 30),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Theme.of(context).colorScheme.secondary.withOpacity(0.4),
+                color: Theme.of(context).colorScheme.secondary.withOpacity(1),
                 blurRadius: 14,
               ),
             ],
@@ -61,8 +65,7 @@ class PreviewProjectDialog extends StatelessWidget {
                                 .textTheme
                                 .headlineMedium
                                 ?.copyWith(
-                                  fontSize: 38,
-                                  // fontFamily: "Raleway",
+                                  fontSize: context.isMobile ? 24 : 38,
                                   fontWeight: FontWeight.w900,
                                   color: Colors.white.withOpacity(0.9),
                                 ),
@@ -80,17 +83,17 @@ class PreviewProjectDialog extends StatelessWidget {
                     Text(
                       "Overview",
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: context.isMobile ? 18 : 24,
                         fontWeight: FontWeight.w600,
                         color: Colors.white.withOpacity(0.8),
                       ),
                     ),
-                    SizedBox(height: 5),
+                    // SizedBox(height: 5),
                     Text(
                       item.description,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: Colors.white.withOpacity(0.8),
-                          ),
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: context.isMobile ? 14 : null),
                     ),
                     SizedBox(height: 40),
                     Text(
@@ -148,8 +151,11 @@ class PreviewProjectDialog extends StatelessWidget {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            MediaQuery.of(context).size.width < 450 ? 1 : 3,
+                        crossAxisCount: context.isTablet
+                            ? 2
+                            : context.isMobile
+                                ? 1
+                                : 3,
                         mainAxisSpacing: 30,
                         crossAxisSpacing: 30,
                         childAspectRatio: item.name ==

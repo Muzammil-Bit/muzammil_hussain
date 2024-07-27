@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import '../providers/app_state_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -91,7 +92,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge
-                                ?.copyWith(fontSize: 80, letterSpacing: 2),
+                                ?.copyWith(
+                                    fontSize: context.isMobile ? 50 : 80,
+                                    letterSpacing: 2),
                             children: [
                               TextSpan(
                                 text: ".",

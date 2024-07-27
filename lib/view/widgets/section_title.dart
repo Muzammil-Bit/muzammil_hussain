@@ -96,7 +96,8 @@ class _SectionTitleState extends State<SectionTitle>
               key: ValueKey(widget.subTitle),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 400),
+                  constraints:
+                      BoxConstraints(maxWidth: context.isMobile ? 300 : 400),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

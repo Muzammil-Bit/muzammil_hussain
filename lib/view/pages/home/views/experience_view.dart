@@ -17,8 +17,8 @@ class ExperienceView extends StatelessWidget {
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * 0.4),
         SectionTitle(
-          backgroundText: "EXPERIENCE",
-          foreGroundText: "INFORMATION TECHNOLOGY",
+          backgroundText: "SKILLS",
+          foreGroundText: "EXPERTISE",
           subTitle: "EXPERIENCE",
         ),
         SizedBox(height: 250),

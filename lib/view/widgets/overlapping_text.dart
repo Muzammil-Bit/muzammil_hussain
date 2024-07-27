@@ -65,7 +65,7 @@ class _OverlappingTextState extends State<OverlappingText>
 class OverlappingHeroText extends StatefulWidget {
   const OverlappingHeroText({
     super.key,
-    this.offset = const Offset(-10, 10),
+    this.offset = const Offset(-5, 5),
     required this.text,
     this.backgroundStyle,
     this.backgroundText,
@@ -114,7 +114,7 @@ class _OverlappingHeroTextState extends State<OverlappingHeroText>
                     Theme.of(context).textTheme.headlineLarge?.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: context
-                              .getResponsiveValue([60, 80, 120]).toDouble(),
+                              .getResponsiveValue([40, 80, 120]).toDouble(),
                         ),
               ),
             ),
@@ -123,7 +123,7 @@ class _OverlappingHeroTextState extends State<OverlappingHeroText>
             widget.text,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontSize:
-                      context.getResponsiveValue([60, 80, 120]).toDouble(),
+                      context.getResponsiveValue([40, 80, 120]).toDouble(),
                   fontWeight: FontWeight.bold,
                 ),
           ),

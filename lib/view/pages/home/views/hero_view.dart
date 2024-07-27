@@ -65,7 +65,7 @@ class _HeroViewState extends State<HeroView> {
                 AnimatedPositioned(
                   duration: _animDuration,
                   curve: Curves.easeOut,
-                  right: context.isMobile ? 100 : constraints.maxWidth * 0.1,
+                  right: context.isMobile ? 40 : constraints.maxWidth * 0.1,
                   top: _isScrolled ? 300 : 100,
                   child: Opacity(
                     opacity: 0.8,
@@ -88,7 +88,7 @@ class _HeroViewState extends State<HeroView> {
                   ),
                 ),
                 AnimatedPositioned(
-                  left: context.isMobile ? 30 : 150,
+                  left: context.isMobile ? 20 : 150,
                   duration: _animDuration,
                   curve: Curves.easeOut,
                   bottom: _isScrolled
@@ -128,6 +128,7 @@ class _HeroViewState extends State<HeroView> {
                             ),
                           ),
                         ),
+                        SizedBox(height: 5),
                         Entry.opacity(
                           delay: Constants.smallDelay,
                           child: Transform.translate(
@@ -146,7 +147,8 @@ class _HeroViewState extends State<HeroView> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 100),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.06),
                         Entry.opacity(
                           delay: Constants.smallDelay,
                           duration: Constants.smallDelay,
@@ -259,7 +261,7 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 40,
+      bottom: context.isMobile ? 20 : 40,
       left: 0,
       right: 0,
       child: Entry.opacity(
@@ -278,68 +280,90 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
             ],
             Text(
               "19°C",
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
             ),
             SizedBox(width: 20),
             AnimatedFlipCounter(
               value: int.parse(DateFormat('hh').format(_now)),
-              textStyle: Theme.of(context).textTheme.bodyLarge,
+              textStyle: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
             ),
             Text(
               " : ",
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
             ),
             AnimatedFlipCounter(
               value: _now.minute,
-              textStyle: Theme.of(context).textTheme.bodyLarge,
+              textStyle: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
             ),
             Text(
               " : ",
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
             ),
             AnimatedFlipCounter(
               value: _now.second,
               // value: 0,
-              textStyle: Theme.of(context).textTheme.bodyLarge,
+              textStyle: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
               hideLeadingZeroes: false,
               wholeDigits: 2,
               curve: Curves.easeInOut,
             ),
             Text(
               "  ${DateFormat('a').format(_now)}",
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontSize: context.isMobile ? 12 : null),
             ),
             SizedBox(width: 20),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white,
-                ),
-                shape: BoxShape.circle,
-              ),
-              padding: EdgeInsets.all(10),
-              child: Container(
+            if (!context.isMobile)
+              Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .secondary
-                        .withOpacity(0.4),
-                    width: 4,
+                    color: Colors.white,
                   ),
                   shape: BoxShape.circle,
                 ),
-                child: CircleAvatar(
-                  radius: 10,
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                  child: Icon(
-                    Icons.wb_cloudy_sharp,
-                    color: Colors.white,
-                    size: 12,
+                padding: EdgeInsets.all(10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.4),
+                      width: 4,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: CircleAvatar(
+                    radius: 10,
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    child: Icon(
+                      Icons.wb_cloudy_sharp,
+                      color: Colors.white,
+                      size: 12,
+                    ),
                   ),
                 ),
-              ),
-            )
+              )
           ],
         ),
       ),

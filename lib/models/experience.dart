@@ -41,9 +41,9 @@ class Experience {
       responsibilities: [
         "Closely collaborated with mobile developers, backend developers, UI/ UX designers and QA team multiple apps",
         """Mainly responsible for 
-        ● Project Architecture
-        ● Authentication flows,
-        ● Third-party integrations,
+          Project Architecture
+          Authentication flows,
+          Third-party integrations,
         """,
       ],
       startDate: DateTime(2022, 1),

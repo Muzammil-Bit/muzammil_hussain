@@ -13,6 +13,8 @@ class Constants {
   static const linkedInUrl = 'https://www.linkedin.com/in/muzammil-developer/';
   static const xUrl = 'https://x.com/muzammil0301';
   static const githubUrl = 'https://github.com/muzammil-Bit/';
+  static const resumeURl =
+      'https://drive.google.com/file/d/1RuRh_n9ZeRvFgpsdbueiBRTafvKb4lfU/view?usp=sharing';
 
   static outLinedText(BuildContext context, {double strokeWidth = 1}) {
     return Paint()

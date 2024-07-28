@@ -1,6 +1,7 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/view/widgets/app_button.dart';
 
 import '../../router/routes.dart';
 import '../../widgets/nav_bar.dart';
@@ -98,40 +99,6 @@ class _ExperiencePageState extends State<ExperiencePage>
           SizedBox(height: 130),
           FooterView(),
         ],
-      ),
-    );
-  }
-}
-
-class AppButton extends StatelessWidget {
-  const AppButton({
-    super.key,
-    required this.onTap,
-    required this.child,
-  });
-  final void Function() onTap;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.secondary),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: EdgeInsets.all(5),
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith(
-            (states) => Theme.of(context).colorScheme.secondary,
-          ),
-          shape: MaterialStateProperty.resolveWith((states) =>
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-          padding: MaterialStateProperty.resolveWith(
-              (states) => EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
-        ),
-        child: child,
       ),
     );
   }

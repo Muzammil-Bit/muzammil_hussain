@@ -19,13 +19,14 @@ class PreviewProjectDialog extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 30),
           constraints: BoxConstraints(maxWidth: 1100, maxHeight: 800),
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.only(left: 30, right: 5, bottom: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
                 color: Theme.of(context).colorScheme.secondary.withOpacity(1),
                 blurRadius: 14,
+                spreadRadius: 8,
               ),
             ],
             color: Colors.black,
@@ -34,15 +35,15 @@ class PreviewProjectDialog extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
                     onPressed: () {
                       context.pop();
                     },
                     icon: CircleAvatar(
+                        radius: context.isMobile ? 14 : null,
                         backgroundColor: Colors.white,
                         child: Icon(
                           Icons.close,
@@ -51,10 +52,10 @@ class PreviewProjectDialog extends StatelessWidget {
                   // AppButton(onTap: () {}),
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.only(bottom: 50),
+                  padding: EdgeInsets.only(bottom: 30, right: 25),
                   children: [
                     Row(
                       children: [

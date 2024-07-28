@@ -12,38 +12,36 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedCursor(
-      child: Scaffold(
-        body: ListView(
-          children: [
-            AnimatedNavWrapper(
-              child: Container(
-                width: double.maxFinite,
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(top: 200, left: 50, right: 50),
-                constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 1024),
-                  child: Column(
-                    children: [
-                      SectionTitle(
-                        backgroundText: "ABOUT",
-                        foreGroundText: "A Brief History of Muzammil",
-                        subTitle: "Bio",
-                      ),
-                      SizedBox(height: 140),
-                      context.isTablet || context.isMobile
-                          ? _mobileView(context)
-                          : _largeView(context),
-                    ],
-                  ),
+    return Scaffold(
+      body: ListView(
+        children: [
+          AnimatedNavWrapper(
+            child: Container(
+              width: double.maxFinite,
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(top: 200, left: 50, right: 50),
+              constraints:
+                  BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 1024),
+                child: Column(
+                  children: [
+                    SectionTitle(
+                      backgroundText: "ABOUT",
+                      foreGroundText: "A Brief History of Muzammil",
+                      subTitle: "Bio",
+                    ),
+                    SizedBox(height: 140),
+                    context.isTablet || context.isMobile
+                        ? _mobileView(context)
+                        : _largeView(context),
+                  ],
                 ),
               ),
             ),
-            FooterView(),
-          ],
-        ),
+          ),
+          FooterView(),
+        ],
       ),
     );
   }
@@ -144,15 +142,17 @@ class AboutPage extends StatelessWidget {
           "A BRIEF PROFILE OF MUZAMMIL",
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 fontFamily: "Goku",
+                fontSize: 18,
               ),
+          textAlign: TextAlign.center,
         ),
         SizedBox(height: 10),
         Text(
           "Muzammil Hussain is a mobile application developer based in Pakistan, specializing in Hybrid Mobile Apps Development using Flutter. As a dedicated freelancer, he continually seeks new opportunities to enhance his skills.",
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(fontWeight: FontWeight.w500),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w400,
+                fontSize: 12,
+              ),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 20),

@@ -65,7 +65,7 @@ class _OverlappingTextState extends State<OverlappingText>
 class OverlappingHeroText extends StatefulWidget {
   const OverlappingHeroText({
     super.key,
-    this.offset = const Offset(-5, 5),
+    this.offset = const Offset(-10, 15),
     required this.text,
     this.backgroundStyle,
     this.backgroundText,

@@ -1,6 +1,10 @@
+import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:muzammil_hussain/view/pages/experience/experience_page.dart';
+import 'package:muzammil_hussain/view/widgets/app_button.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../config/constants.dart';
 import '../../extensions/color_ext.dart';
@@ -117,11 +121,55 @@ class _AnimatedNavWrapperState extends State<AnimatedNavWrapper> {
                     ],
                   ),
                 ),
+                // ResumeDownloadButton(),
               ],
             );
           }),
         ),
       ],
+    );
+  }
+}
+
+class ResumeDownloadButton extends StatelessWidget {
+  const ResumeDownloadButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 40,
+      right: 40,
+      child: Entry(
+        yOffset: 100,
+        opacity: 0,
+        delay: Duration(seconds: 12),
+        duration: Duration(seconds: 14),
+        child: AppButton(
+          onTap: () {
+            launchUrlString(Constants.resumeURl);
+          },
+          child: Row(
+            children: [
+              Text(
+                "RESUME",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: "Raleway",
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: 5),
+              Icon(
+                Icons.download_outlined,
+                color: Colors.white,
+                size: 20,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

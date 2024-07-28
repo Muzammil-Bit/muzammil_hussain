@@ -32,64 +32,65 @@ class ExperienceStepCard extends StatelessWidget {
   Widget build(BuildContext context) {
     EdgeInsetsGeometry padding = EdgeInsets.only(left: 30, bottom: 100);
     return IntrinsicHeight(
-      child:
-          Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-        Expanded(
-          child: Align(
-            alignment: Alignment.topCenter,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ThreeDFlip(
+                animation: curvedAnimation,
+                start: start,
+                end: end,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.1,
+                    top: 15,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Text(
+                        "${"$index".prefixZero()}",
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w200,
+                            ),
+                      ),
+                      SizedBox(width: 30),
+                      Text(
+                        "${experience.startDate.toMonthAndYear()} - ${experience.endDate.toMonthAndYear()}",
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w200,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          ThreeDFlip(
+            animation: curvedAnimation,
+            start: start,
+            end: end,
+            child: Container(
+              width: 1,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
             child: ThreeDFlip(
               animation: curvedAnimation,
               start: start,
               end: end,
               child: Padding(
-                padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.1,
-                  top: 15,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Text(
-                      "${"$index".prefixZero()}",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.w200,
-                          ),
-                    ),
-                    SizedBox(width: 30),
-                    Text(
-                      "${experience.startDate.toMonthAndYear()} - ${experience.endDate.toMonthAndYear()}",
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.w200,
-                          ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-        ThreeDFlip(
-          animation: curvedAnimation,
-          start: start,
-          end: end,
-          child: Container(
-            width: 1,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: ThreeDFlip(
-            animation: curvedAnimation,
-            start: start,
-            end: end,
-            child: Padding(
-              padding: padding,
-              child: Column(
+                padding: padding,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
@@ -116,11 +117,13 @@ class ExperienceStepCard extends StatelessWidget {
                           ),
                         )
                         .toList(),
-                  ]),
+                  ],
+                ),
+              ),
             ),
-          ),
-        )
-      ]),
+          )
+        ],
+      ),
     );
   }
 }

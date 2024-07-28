@@ -50,9 +50,9 @@ class ContactPage extends StatelessWidget {
   Column _mobileView(BuildContext context) {
     return Column(
       children: [
-        _contactForm(context),
-        SizedBox(height: 100),
         _contactInformation(context),
+        SizedBox(height: 100),
+        _contactForm(context),
       ],
     );
   }
@@ -87,10 +87,10 @@ class ContactPage extends StatelessWidget {
                 ),
               )
             ],
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontFamily: "Raleway"),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontFamily: "Raleway",
+                  fontSize: context.isMobile ? 24 : null,
+                ),
           )),
           SizedBox(height: 50),
           ListTile(

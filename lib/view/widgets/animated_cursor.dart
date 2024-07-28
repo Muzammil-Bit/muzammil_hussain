@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/view/widgets/nav_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/animated_mouse_position_provider.dart';
@@ -46,6 +47,7 @@ class AnimatedCursor extends StatelessWidget {
                   ),
                 ),
               ),
+              ResumeDownloadButton(),
               Visibility(
                 visible: state.offset != Offset.zero,
                 child: AnimatedPositioned(

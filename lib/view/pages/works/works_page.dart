@@ -1,6 +1,7 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:muzammil_hussain/models/project.dart';
 
 import '../../animations/animated_dialog/animated_dialog.dart';
@@ -80,21 +81,22 @@ class _WorksPageState extends State<WorksPage> with TickerProviderStateMixin {
           ),
           SizedBox(height: 200),
           Center(
-            child: ConstrainedBox(
+            child: Container(
               constraints: BoxConstraints(maxWidth: 1024),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: StaggeredGrid.count(
                 crossAxisCount: 4,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 children: [
                   StaggeredGridTile.count(
-                    crossAxisCellCount: 3,
-                    mainAxisCellCount: 2,
+                    crossAxisCellCount: context.isMobile ? 4 : 3,
+                    mainAxisCellCount: context.isMobile ? 3 : 2,
                     child: _WorkItem(item: kProjects[0]),
                   ),
                   StaggeredGridTile.count(
-                    crossAxisCellCount: 1,
-                    mainAxisCellCount: 2,
+                    crossAxisCellCount: context.isMobile ? 2 : 1,
+                    mainAxisCellCount: context.isMobile ? 3 : 2,
                     child: _WorkItem(item: kProjects[1]),
                   ),
                   StaggeredGridTile.count(

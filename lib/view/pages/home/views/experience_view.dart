@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:muzammil_hussain/view/router/routes.dart';
+import 'package:muzammil_hussain/view/widgets/app_button.dart';
 
 import '../../../../extensions/context_ext.dart';
 import '../../../widgets/section_title.dart';

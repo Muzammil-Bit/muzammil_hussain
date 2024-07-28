@@ -38,111 +38,52 @@ class _JobsListViewState extends State<JobsListView>
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: const ValueKey("jobs_list"),
-      onVisibilityChanged: (info) {
-        if (info.visibleFraction > 0.2) {
-          _controller.forward();
-        }
-        if (info.visibleFraction < 0.4 && _controller.isCompleted) {
-          _controller.reverse();
-        }
-      },
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(children: <Widget>[
-          ...Experience.ksExperiences.map(
-            (exp) {
-              int index = Experience.ksExperiences.indexOf(exp);
-              double start = index / Experience.ksExperiences.length;
-              double end = (index + 1) > Experience.ksExperiences.length
-                  ? 10
-                  : (index + 1) / Experience.ksExperiences.length;
-              return context.getResponsiveValue([
-                MobileExperienceStepCard(
-                  experience: exp,
-                  index: index + 1,
-                  animation: _controller,
-                  start: start,
-                  end: end,
-                ),
-                MobileExperienceStepCard(
-                  experience: exp,
-                  index: index + 1,
-                  animation: _controller,
-                  start: start,
-                  end: end,
-                ),
-                ExperienceStepCard(
-                  experience: exp,
-                  index: index + 1,
-                  animation: _controller,
-                  start: start,
-                  end: end,
-                )
-              ]);
-              // return context.adaptive<Widget>(
-              // MobileExperienceStepCard(
-              //   experience: exp,
-              //   index: index + 1,
-              //   animation: _controller,
-              //   start: start,
-              //   end: end,
-              // ),
-              ExperienceStepCard(
-                experience: exp,
-                index: index + 1,
-                animation: _controller,
-                start: start,
-                end: end,
-              );
-              // );
-            },
-          ).toList(),
-          // VisibilityDetector(
-          //   key: const ValueKey("freelancing"),
-          //   onVisibilityChanged: (info) {
-          //     if (info.visibleFraction > 0.4) {
-          //       _textController.forward();
-          //     }
-          //   },
-          //   // child: AnimatedTextSlideBoxTransition(
-          //   //   controller: _textController,
-          //   //   text: "ksWhatElse.addDoubleQuote()",
-          //   //   maxLines: 4,
-          //   //   textStyle: context.adaptive(
-          //   //     Theme.of(context).textTheme.bodySmall,
-          //   //     Theme.of(context).textTheme.titleMedium,
-          //   //   ),
-          //   //   textAlign: TextAlign.center,
-          //   //   coverColor: Colors.white,
-          //   // ).addPadding(
-          //     // edgeInsets: context.percentPadding(),
-          //   ),
-          // ),
-          SizedBox(height: 20),
-          // AnimatedTextSlideBoxTransition(
-          //   controller: _textController,
-          //   text: ksSayHello.addDoubleQuote(),
-          //   maxLines: 3,
-          //   textStyle: context
-          //       .adaptive(
-          //         Theme.of(context).textTheme.bodySmall,
-          //         Theme.of(context).textTheme.titleSmall,
-          //       )
-          //       ?.copyWith(
-          //         fontWeight: FontWeight.w300,
-          //       ),
-          //   textAlign: TextAlign.center,
-          //   coverColor: kPrimary,
-          // ),
-        ]),
-      )
-
-      // .addPadding(
-      //   // edgeInsets:
-      //   //     context.symmetricPercentPadding(vPercent: s6, hPercent: s4),
-      // )
-      ,
-    );
+        key: const ValueKey("jobs_list"),
+        onVisibilityChanged: (info) {
+          if (info.visibleFraction > 0.2) {
+            _controller.forward();
+          }
+          if (info.visibleFraction < 0.4 && _controller.isCompleted) {
+            _controller.reverse();
+          }
+        },
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(children: <Widget>[
+            ...Experience.ksExperiences.map(
+              (exp) {
+                int index = Experience.ksExperiences.indexOf(exp);
+                double start = index / Experience.ksExperiences.length;
+                double end = (index + 1) > Experience.ksExperiences.length
+                    ? 10
+                    : (index + 1) / Experience.ksExperiences.length;
+                return context.getResponsiveValue([
+                  MobileExperienceStepCard(
+                    experience: exp,
+                    index: index + 1,
+                    animation: _controller,
+                    start: start,
+                    end: end,
+                  ),
+                  MobileExperienceStepCard(
+                    experience: exp,
+                    index: index + 1,
+                    animation: _controller,
+                    start: start,
+                    end: end,
+                  ),
+                  ExperienceStepCard(
+                    experience: exp,
+                    index: index + 1,
+                    animation: _controller,
+                    start: start,
+                    end: end,
+                  )
+                ]);
+              },
+            ).toList(),
+            SizedBox(height: 20),
+          ]),
+        ));
   }
 }

@@ -18,9 +18,6 @@ class ProjectProcessView extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-          ),
           SectionTitle(
             backgroundText: "PROCESS",
             foreGroundText: "PROJECT PROCESS",

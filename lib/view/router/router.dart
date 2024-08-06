@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:muzammil_hussain/view/pages/experience/experience_page.dart';
 import 'package:muzammil_hussain/view/router/route_transition.dart';
@@ -12,23 +13,58 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: Routes.home,
-      builder: (context, state) => HomePage(),
+      pageBuilder: (context, state) => _buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: HomePage(),
+      ),
     ),
     GoRoute(
       path: Routes.contact,
-      builder: (context, state) => ContactPage(),
+      pageBuilder: (context, state) => _buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: ContactPage(),
+      ),
     ),
     GoRoute(
       path: Routes.about,
-      builder: (context, state) => AboutPage(),
+      pageBuilder: (context, state) => _buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: AboutPage(),
+      ),
     ),
     GoRoute(
       path: Routes.works,
-      builder: (context, state) => WorksPage(),
+      // builder: (context, state) => WorksPage(),
+      pageBuilder: (context, state) => _buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: WorksPage(),
+      ),
     ),
     GoRoute(
       path: Routes.experience,
-      builder: (context, state) => ExperiencePage(),
+      // builder: (context, state) => ExperiencePage(),
+      pageBuilder: (context, state) => _buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: ExperiencePage(),
+      ),
     ),
   ],
 );
+
+CustomTransitionPage _buildPageWithDefaultTransition<T>({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
+}

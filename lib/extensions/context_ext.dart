@@ -1,18 +1,10 @@
 import 'dart:math';
 
 import 'package:delightful_toast/delight_toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
-  // push(Widget widget) {
-  //   Navigator.of(this).push(MaterialPageRoute(builder: (_) => widget));
-  // }
-
-  // pushReplacement(Widget widget) {
-  //   Navigator.of(this)
-  //       .pushReplacement(MaterialPageRoute(builder: (_) => widget));
-  // }
-
   bool get isTablet =>
       MediaQuery.of(this).size.width <= 1025 &&
       MediaQuery.of(this).size.width >= 770;

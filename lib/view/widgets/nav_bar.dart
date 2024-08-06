@@ -146,29 +146,31 @@ class ResumeDownloadButton extends StatelessWidget {
         opacity: 0,
         delay: Duration(seconds: 12),
         duration: Duration(seconds: 14),
-        child: AppButton(
-          onTap: () {
-            launchUrlString(Constants.resumeURl);
-          },
-          child: Row(
-            children: [
-              Text(
-                "RESUME",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "Raleway",
-                  color: Colors.white,
+        child: Consumer<AppStateProvider>(builder: (context, value, child) {
+          return AppButton(
+            onTap: () {
+              launchUrlString(Constants.resumeURl);
+            },
+            child: Row(
+              children: [
+                Text(
+                  "RESUME",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Raleway",
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              SizedBox(width: 5),
-              Icon(
-                Icons.download_outlined,
-                color: Colors.white,
-                size: 20,
-              )
-            ],
-          ),
-        ),
+                SizedBox(width: 5),
+                Icon(
+                  Icons.download_outlined,
+                  color: Colors.white,
+                  size: 20,
+                )
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

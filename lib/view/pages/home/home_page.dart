@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/app_state_provider.dart';
@@ -41,9 +42,13 @@ class _HomePageState extends State<HomePage> {
                             : null,
                         children: [
                           HeroView(scrollController: _scrollController),
+                          _HomePageSpacer(),
                           ExperienceView(),
+                          _HomePageSpacer(),
                           RecentWorksView(),
+                          _HomePageSpacer(),
                           ProjectProcessView(),
+                          _HomePageSpacer(),
                           ContactMeView(),
                           FooterView(),
                         ],
@@ -55,5 +60,14 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+}
+
+class _HomePageSpacer extends StatelessWidget {
+  const _HomePageSpacer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: context.isMobile ? 300 : 400);
   }
 }

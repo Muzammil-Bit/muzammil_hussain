@@ -70,7 +70,6 @@
     }
   </script>
   <script>
-    // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
@@ -102,22 +101,6 @@
       -moz-transform: translateX(-50%) translateY(-50%);
       -webkit-transform: translateX(-50%) translateY(-50%);
     }
-
-    .loading-label {
-      font-size: 18px;
-      font-weight: normal;
-      text-align: center;
-      font-style: normal;
-      font-color: white;
-      color: white;
-      background-color: black;
-      animation-name: changing;
-      animation-duration: 1.5s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease;
-    }
-
-    @keyframes changing {}
   </style>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
@@ -127,27 +110,10 @@
     <lord-icon id="icon" src="https://lottie.host/ead77b0a-5e2d-4755-a6e8-2391f28d4c42/h89yMlqFDv.json" trigger="loop"
       colors="primary:#000000,secondary:#ffc738,tertiary:#f24c00" style="width:200px;height:200px">
     </lord-icon>
-    <!-- <p class="loading-label"></p> -->
   </div>
   <script>
-  //  const texts = [
-   //   "Hold on, let me grab my coffee...",
-   //   "Drinking it now...",
-   //   "Trust me, I will get back to you...",
-    //  "Its a big cup...",
-   //   "Trust me, I will get back to you...",
-   // ];
-   // const element = document.querySelector('p.loading-label');
-   // let i = 0;
-   // const listener = e => {
-     // i = i < texts.length - 1 ? i + 1 : 0;
-    //  element.innerHTML = texts[i];
-   // };
-   // element.innerHTML = texts[0];
-  //  element.addEventListener('animationiteration', listener, false);
 
     window.addEventListener('load', function (ev) {
-      // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
@@ -155,7 +121,6 @@
         onEntrypointLoaded: function (engineInitializer) {
           engineInitializer.initializeEngine().then(function (appRunner) {
             const loader = document.getElementById("loader");
-
             if (loader != null) {
               loader.remove();
             }

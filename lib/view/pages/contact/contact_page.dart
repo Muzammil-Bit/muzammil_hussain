@@ -3,6 +3,9 @@ import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:muzammil_hussain/config/assets.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../config/constants.dart';
 import '../../../extensions/context_ext.dart';
@@ -154,17 +157,20 @@ class ContactPage extends StatelessWidget {
           Divider(height: 40),
           ListTile(
             onTap: () async {
-              await Clipboard.setData(ClipboardData(text: Constants.email));
-              context.showToast("Address copied to your clipboard!");
+              launchUrlString(Constants.githubUrl);
             },
             minLeadingWidth: 60,
             leading: CircleAvatar(
-              child: Icon(Icons.email, color: Colors.white),
+              child: SvgPicture.asset(
+                "assets/svg/github.svg",
+                colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                width: 25,
+              ),
               radius: 25,
             ),
             contentPadding: EdgeInsets.symmetric(horizontal: 0),
             title: Text(
-              'ADDRESS',
+              'GITHUB',
               style: Theme.of(context)
                   .textTheme
                   .labelSmall

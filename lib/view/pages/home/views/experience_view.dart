@@ -16,7 +16,6 @@ class ExperienceView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 0.4),
         SectionTitle(
           backgroundText: "SKILLS",
           foreGroundText: "EXPERTISE",
@@ -54,7 +53,7 @@ class ExperienceView extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 180),
+        SizedBox(height: 50),
         AppButton(
           onTap: () => context.go(Routes.experience),
           child: Row(

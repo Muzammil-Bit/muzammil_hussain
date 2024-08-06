@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -20,7 +21,6 @@ class AppButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ButtonStyle(
-          animationDuration: Duration(milliseconds: 500),
           backgroundColor: WidgetStateProperty.resolveWith(
             (states) => states.contains(WidgetState.hovered)
                 ? Theme.of(context).colorScheme.secondary
@@ -29,7 +29,11 @@ class AppButton extends StatelessWidget {
           shape: WidgetStateProperty.resolveWith((states) =>
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
           padding: WidgetStateProperty.resolveWith(
-              (states) => EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
+            (states) => EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: context.isMobile ? 10 : 20,
+            ),
+          ),
         ),
         child: child,
       ),

@@ -94,7 +94,7 @@ class _HeroViewState extends State<HeroView> {
                   bottom: _isScrolled
                       ? 300
                       : context.isMobile
-                          ? 300
+                          ? 130
                           : 150,
                   child: OverlappingHeroText(
                     text: "U",

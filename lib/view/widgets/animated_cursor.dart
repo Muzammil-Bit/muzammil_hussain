@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:muzammil_hussain/view/widgets/nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -17,59 +20,62 @@ class AnimatedCursor extends StatelessWidget {
         child: child,
         builder: (context, provider, child) {
           final state = provider.state;
+          // state.decoration
 
           return Stack(
             children: [
               if (child != null) child,
-              Positioned.fill(
-                child: MouseRegion(
-                  opaque: false,
-                  onHover: (e) => _onCursorUpdate(e, context),
-                ),
-              ),
-              Visibility(
-                visible: state.offset != Offset.zero,
-                child: AnimatedPositioned(
-                  left: state.offset.dx - state.size.width / 2,
-                  top: state.offset.dy - state.size.height / 2,
-                  width: state.size.width,
-                  height: state.size.height,
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.decelerate,
-                  child: IgnorePointer(
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.ease,
-                      width: state.size.width,
-                      height: state.size.height,
-                      decoration: state.decoration,
-                    ),
+              if (!context.isMobile) ...[
+                Positioned.fill(
+                  child: MouseRegion(
+                    opaque: false,
+                    onHover: (e) => _onCursorUpdate(e, context),
                   ),
                 ),
-              ),
-              ResumeDownloadButton(),
-              Visibility(
-                visible: state.offset != Offset.zero,
-                child: AnimatedPositioned(
-                  left: state.offset.dx - state.size.width / 16,
-                  top: state.offset.dy - state.size.height / 16,
-                  width: state.size.width / 10,
-                  height: state.size.height / 10,
-                  duration: Duration(milliseconds: 50),
-                  curve: Curves.decelerate,
-                  child: IgnorePointer(
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.ease,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+                Visibility(
+                  visible: state.offset != Offset.zero,
+                  child: AnimatedPositioned(
+                    left: state.offset.dx - state.size.width / 2,
+                    top: state.offset.dy - state.size.height / 2,
+                    width: state.size.width,
+                    height: state.size.height,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.decelerate,
+                    child: IgnorePointer(
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.ease,
+                        width: state.size.width,
+                        height: state.size.height,
+                        decoration: state.decoration,
                       ),
-                      // decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
                 ),
-              ),
+                Visibility(
+                  visible: state.offset != Offset.zero,
+                  child: AnimatedPositioned(
+                    left: state.offset.dx - state.size.width / 16,
+                    top: state.offset.dy - state.size.height / 16,
+                    width: state.size.width / 10,
+                    height: state.size.height / 10,
+                    duration: Duration(milliseconds: 50),
+                    curve: Curves.decelerate,
+                    child: IgnorePointer(
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.ease,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        // decoration: BoxDecoration(color: Colors.red),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              ResumeDownloadButton(),
             ],
           );
         },

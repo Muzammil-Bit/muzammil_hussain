@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "name": "muzammil-hussain",
+    "rewrites": [
+        {
+            "source": "/:a*",
+            "destination": "/"
+        }
+    ]
+}

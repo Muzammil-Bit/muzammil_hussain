@@ -37,7 +37,6 @@ final router = GoRouter(
     ),
     GoRoute(
       path: Routes.works,
-      // builder: (context, state) => WorksPage(),
       pageBuilder: (context, state) => _buildPageWithDefaultTransition(
         context: context,
         state: state,
@@ -46,7 +45,6 @@ final router = GoRouter(
     ),
     GoRoute(
       path: Routes.experience,
-      // builder: (context, state) => ExperiencePage(),
       pageBuilder: (context, state) => _buildPageWithDefaultTransition(
         context: context,
         state: state,
@@ -61,10 +59,8 @@ CustomTransitionPage _buildPageWithDefaultTransition<T>({
   required GoRouterState state,
   required Widget child,
 }) {
-  return CustomTransitionPage<T>(
-    key: state.pageKey,
+  return SlideTransitionPage(
     child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-        FadeTransition(opacity: animation, child: child),
+    position: SlidePosition.left,
   );
 }

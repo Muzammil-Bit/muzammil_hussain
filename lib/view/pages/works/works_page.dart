@@ -90,13 +90,13 @@ class _WorksPageState extends State<WorksPage> with TickerProviderStateMixin {
                 crossAxisSpacing: 10,
                 children: [
                   StaggeredGridTile.count(
-                    crossAxisCellCount: context.isMobile ? 4 : 3,
-                    mainAxisCellCount: context.isMobile ? 3 : 2,
+                    crossAxisCellCount: context.isMobile ? 4 : 2,
+                    mainAxisCellCount: context.isMobile ? 3 : 3,
                     child: _WorkItem(item: kProjects[0]),
                   ),
                   StaggeredGridTile.count(
-                    crossAxisCellCount: context.isMobile ? 2 : 1,
-                    mainAxisCellCount: context.isMobile ? 3 : 2,
+                    crossAxisCellCount: context.isMobile ? 4 : 2,
+                    mainAxisCellCount: context.isMobile ? 3 : 3,
                     child: _WorkItem(item: kProjects[1]),
                   ),
                   StaggeredGridTile.count(
@@ -119,11 +119,6 @@ class _WorksPageState extends State<WorksPage> with TickerProviderStateMixin {
                     mainAxisCellCount: 3,
                     child: _WorkItem(item: kProjects[5]),
                   ),
-                  // StaggeredGridTile.count(
-                  //   crossAxisCellCount: 2,
-                  //   mainAxisCellCount: 3,
-                  //   child: WorkItem(item: items[6]),
-                  // ),
                 ],
               ),
             ),

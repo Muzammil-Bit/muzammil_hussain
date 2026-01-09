@@ -2,7 +2,6 @@ import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 
 import '../../../extensions/context_ext.dart';
-import '../../widgets/animated_cursor.dart';
 import '../../widgets/nav_bar.dart';
 import '../../widgets/section_title.dart';
 import '../home/views/footer_view.dart';

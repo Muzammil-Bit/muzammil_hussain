@@ -24,7 +24,10 @@ class PreviewProjectDialog extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Theme.of(context).colorScheme.secondary.withOpacity(1),
+                color: Theme.of(context)
+                    .colorScheme
+                    .secondary
+                    .withValues(alpha: 1),
                 blurRadius: 14,
                 spreadRadius: 8,
               ),
@@ -68,7 +71,7 @@ class PreviewProjectDialog extends StatelessWidget {
                                 ?.copyWith(
                                   fontSize: context.isMobile ? 24 : 38,
                                   fontWeight: FontWeight.w900,
-                                  color: Colors.white.withOpacity(0.9),
+                                  color: Colors.white.withValues(alpha: 0.9),
                                 ),
                             textAlign: TextAlign.center,
                           ),
@@ -77,7 +80,7 @@ class PreviewProjectDialog extends StatelessWidget {
                     ),
                     Divider(
                       thickness: 0.5,
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.white.withValues(alpha: 0.5),
                       height: 20,
                     ),
                     SizedBox(height: 30),
@@ -86,14 +89,14 @@ class PreviewProjectDialog extends StatelessWidget {
                       style: TextStyle(
                         fontSize: context.isMobile ? 18 : 24,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                       ),
                     ),
                     // SizedBox(height: 5),
                     Text(
                       item.description,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                           fontSize: context.isMobile ? 14 : null),
                     ),
                     SizedBox(height: 40),
@@ -102,7 +105,7 @@ class PreviewProjectDialog extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                       ),
                     ),
                     Divider(),
@@ -132,12 +135,12 @@ class PreviewProjectDialog extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha: 0.8),
                         ),
                       ),
                     ),
                     Divider(
-                      color: Colors.white.withOpacity(0.4),
+                      color: Colors.white.withValues(alpha: 0.4),
                     ),
                     SizedBox(height: 30),
                     GridView.builder(
@@ -272,7 +275,7 @@ class PreviewProjectDialog extends StatelessWidget {
               text: item.features,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
           ],
@@ -310,7 +313,7 @@ class PreviewProjectDialog extends StatelessWidget {
               text: item.stateManagement,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                color: Colors.white.withOpacity(0.9),
+                color: Colors.white.withValues(alpha: 0.9),
               ),
             ),
           ],

@@ -111,7 +111,7 @@ class _ProcessCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Divider(
-                    color: Colors.white.withOpacity(0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                     height: 100,
                   ),
                 ],
@@ -142,7 +142,7 @@ class _ProcessCard extends StatelessWidget {
                           ?.copyWith(height: 1.6),
                     ),
                     Divider(
-                      color: Colors.white.withOpacity(0.15),
+                      color: Colors.white.withValues(alpha: 0.15),
                       height: 200,
                     ),
                   ],

@@ -4,7 +4,11 @@ import 'colors.dart';
 import '../extensions/theme_ex.dart';
 
 class ThemeConfig {
+  static List<ThemeData>? _themes;
+
   static List<ThemeData> allThemes() {
+    if (_themes != null) return _themes!;
+
     final defaultTheme = ThemeData(
       fontFamily: "Raleway",
       appBarTheme: AppBarTheme(
@@ -71,7 +75,7 @@ class ThemeConfig {
         ),
       ).apply(
         bodyColor: AppColors.white,
-        displayColor: AppColors.white.withOpacity(0.9),
+        displayColor: AppColors.white.withValues(alpha: 0.9),
         decorationColor: AppColors.white,
       ),
       colorScheme: const ColorScheme(
@@ -82,8 +86,6 @@ class ThemeConfig {
         onSecondary: AppColors.red,
         error: AppColors.red,
         onError: AppColors.red,
-        background: AppColors.primary,
-        onBackground: AppColors.primary,
         surface: AppColors.primary,
         onSurface: AppColors.primary,
       ),
@@ -94,7 +96,7 @@ class ThemeConfig {
       ),
     );
 
-    return [
+    _themes = [
       defaultTheme,
       modifyThemeColor(defaultTheme, Color(0xffEF476F)),
       modifyThemeColor(defaultTheme, Color.fromARGB(255, 239, 71, 211)),
@@ -102,6 +104,8 @@ class ThemeConfig {
       modifyThemeColor(defaultTheme, Color(0xffCBAC40)),
       modifyThemeColor(defaultTheme, Color(0xffC4DC662)),
     ];
+
+    return _themes!;
   }
 
   static modifyThemeColor(ThemeData theme, Color color) {

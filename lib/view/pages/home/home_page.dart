@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/app_state_provider.dart';
 import '../../splash_page.dart';
-import '../../widgets/animated_cursor.dart';
 import '../../widgets/theme_switcher_web.dart';
 import 'views/contact_me.dart';
 import 'views/experience_view.dart';
@@ -64,7 +63,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _HomePageSpacer extends StatelessWidget {
-  const _HomePageSpacer({super.key});
+  const _HomePageSpacer();
 
   @override
   Widget build(BuildContext context) {

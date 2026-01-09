@@ -27,7 +27,7 @@ class _ThemeSwitcherWeb extends StatelessWidget {
       child: Container(
         height: 20,
         width: 1,
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
       ),
     );
   }
@@ -97,7 +97,7 @@ class _ThemSwitcherMobileState extends State<_ThemSwitcherMobile> {
       child: Container(
         height: 20,
         width: 1,
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
       ),
     );
   }

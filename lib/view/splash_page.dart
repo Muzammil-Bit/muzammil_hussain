@@ -4,8 +4,6 @@ import '../providers/app_state_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'animations/circular_reveal.dart';
-import 'pages/home/home_page.dart';
-import 'widgets/page_transition.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

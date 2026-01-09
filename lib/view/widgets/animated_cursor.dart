@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:muzammil_hussain/extensions/context_ext.dart';
 import 'package:muzammil_hussain/view/widgets/nav_bar.dart';

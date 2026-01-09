@@ -180,7 +180,7 @@ class _WorkItemState extends State<_WorkItem> {
                         stops: [0.6, 1],
                         colors: [
                           Colors.transparent,
-                          Colors.black.withOpacity(0.8)
+                          Colors.black.withValues(alpha: 0.8)
                         ],
                       ),
                     ),

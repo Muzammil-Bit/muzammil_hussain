@@ -1,10 +1,8 @@
-import 'package:delightful_toast/delight_toast.dart';
-import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muzammil_hussain/config/assets.dart';
+
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../config/constants.dart';
@@ -247,13 +245,13 @@ class ContactPage extends StatelessWidget {
                     "Thank you for contacting me. For faster response please hit me up on Whatsapp!");
               },
               style: ButtonStyle(
-                fixedSize: MaterialStateProperty.resolveWith(
+                fixedSize: WidgetStateProperty.resolveWith(
                     (states) => Size(double.maxFinite, 60)),
-                shape: MaterialStateProperty.resolveWith(
+                shape: WidgetStateProperty.resolveWith(
                   (states) => RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0)),
                 ),
-                backgroundColor: MaterialStateProperty.resolveWith(
+                backgroundColor: WidgetStateProperty.resolveWith(
                     (states) => Theme.of(context).colorScheme.secondary),
               ),
               child: Text(

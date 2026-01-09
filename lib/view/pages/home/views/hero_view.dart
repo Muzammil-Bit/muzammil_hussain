@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -220,7 +219,7 @@ class _HeroViewState extends State<HeroView> {
                 radius: 0.8,
                 stops: [-2, 1],
                 colors: [
-                  context.theme().colorScheme.secondary.withOpacity(0.8),
+                  context.theme().colorScheme.secondary.withValues(alpha: 0.8),
                   context.theme().scaffoldBackgroundColor,
                 ],
               ),
@@ -348,7 +347,7 @@ class _WeatherAndTimeState extends State<_WeatherAndTime> {
                       color: Theme.of(context)
                           .colorScheme
                           .secondary
-                          .withOpacity(0.4),
+                          .withValues(alpha: 0.4),
                       width: 4,
                     ),
                     shape: BoxShape.circle,
